@@ -1,6 +1,6 @@
 set(WEBRTC_MODULES_DIR "${WEBRTC_SOURCE_DIR}/modules")
 
-add_library("${WEBRTC_COMPONENT_PREFIX}_modules_audio_coding" STATIC
+add_library("${WEBRTC_COMPONENT_PREFIX}modules_audio_coding" STATIC
     #audio_coding
     "${WEBRTC_MODULES_DIR}/audio_coding/acm2/acm_receiver.cc"
     "${WEBRTC_MODULES_DIR}/audio_coding/acm2/acm_receiver.h"
@@ -87,7 +87,7 @@ add_library("${WEBRTC_COMPONENT_PREFIX}_modules_audio_coding" STATIC
     "${WEBRTC_MODULES_DIR}/audio_coding/codecs/cng/webrtc_cng.h"
 )
 
-add_library("${WEBRTC_COMPONENT_PREFIX}_modules_audio_device" STATIC
+add_library("${WEBRTC_COMPONENT_PREFIX}modules_audio_device" STATIC
     #audio_device_api
     "${WEBRTC_MODULES_DIR}/audio_device/include/audio_device.h"
     "${WEBRTC_MODULES_DIR}/audio_device/include/audio_device_defines.h"
@@ -105,7 +105,7 @@ add_library("${WEBRTC_COMPONENT_PREFIX}_modules_audio_device" STATIC
     "${WEBRTC_MODULES_DIR}/audio_device/audio_device_generic.h"
 )
 
-add_library("${WEBRTC_COMPONENT_PREFIX}_modules_audio_mixer" STATIC
+add_library("${WEBRTC_COMPONENT_PREFIX}modules_audio_mixer" STATIC
     #audio_mixer_impl
     "${WEBRTC_MODULES_DIR}/audio_mixer/audio_mixer_impl.cc"
     "${WEBRTC_MODULES_DIR}/audio_mixer/audio_mixer_impl.h"
@@ -119,7 +119,7 @@ add_library("${WEBRTC_COMPONENT_PREFIX}_modules_audio_mixer" STATIC
     "${WEBRTC_MODULES_DIR}/audio_mixer/audio_frame_manipulator.h"
 )
 
-add_library("${WEBRTC_COMPONENT_PREFIX}_modules_audio_processing" STATIC
+add_library("${WEBRTC_COMPONENT_PREFIX}modules_audio_processing" STATIC
     "${WEBRTC_MODULES_DIR}/audio_processing/audio_processing_builder_impl.cc"
     "${WEBRTC_MODULES_DIR}/audio_processing/audio_processing_impl.cc"
     "${WEBRTC_MODULES_DIR}/audio_processing/audio_processing_impl.h"
@@ -186,12 +186,12 @@ add_library("${WEBRTC_COMPONENT_PREFIX}_modules_audio_processing" STATIC
     "${WEBRTC_MODULES_DIR}/audio_processing/voice_detection.h"
 )
 
-add_library("${WEBRTC_COMPONENT_PREFIX}_modules_congestion_controller" STATIC
+add_library("${WEBRTC_COMPONENT_PREFIX}modules_congestion_controller" STATIC
     "${WEBRTC_MODULES_DIR}/congestion_controller/include/receive_side_congestion_controller.h"
     "${WEBRTC_MODULES_DIR}/congestion_controller/receive_side_congestion_controller.cc"
 )
 
-add_library("${WEBRTC_COMPONENT_PREFIX}_modules_pacing" STATIC
+add_library("${WEBRTC_COMPONENT_PREFIX}modules_pacing" STATIC
     "${WEBRTC_MODULES_DIR}/pacing/bitrate_prober.cc"
     "${WEBRTC_MODULES_DIR}/pacing/bitrate_prober.h"
     "${WEBRTC_MODULES_DIR}/pacing/paced_sender.cc"
@@ -210,7 +210,7 @@ add_library("${WEBRTC_COMPONENT_PREFIX}_modules_pacing" STATIC
     "${WEBRTC_MODULES_DIR}/pacing/interval_budget.h"
 )
 
-add_library("${WEBRTC_COMPONENT_PREFIX}_modules_remote_bitrate_estimator" STATIC
+add_library("${WEBRTC_COMPONENT_PREFIX}modules_remote_bitrate_estimator" STATIC
     "${WEBRTC_MODULES_DIR}/remote_bitrate_estimator/aimd_rate_control.cc"
     "${WEBRTC_MODULES_DIR}/remote_bitrate_estimator/aimd_rate_control.h"
     "${WEBRTC_MODULES_DIR}/remote_bitrate_estimator/bwe_defines.cc"
@@ -231,7 +231,7 @@ add_library("${WEBRTC_COMPONENT_PREFIX}_modules_remote_bitrate_estimator" STATIC
     "${WEBRTC_MODULES_DIR}/remote_bitrate_estimator/test/bwe_test_logging.h"
 )
 
-add_library("${WEBRTC_COMPONENT_PREFIX}_modules_rtp_rtcp" STATIC
+add_library("${WEBRTC_COMPONENT_PREFIX}modules_rtp_rtcp" STATIC
     "${WEBRTC_MODULES_DIR}/rtp_rtcp/include/flexfec_receiver.h"
     "${WEBRTC_MODULES_DIR}/rtp_rtcp/include/flexfec_sender.h"
     "${WEBRTC_MODULES_DIR}/rtp_rtcp/include/receive_statistics.h"
@@ -387,13 +387,13 @@ add_library("${WEBRTC_COMPONENT_PREFIX}_modules_rtp_rtcp" STATIC
     "${WEBRTC_MODULES_DIR}/rtp_rtcp/source/rtp_video_header.h"
 )
 
-add_library("${WEBRTC_COMPONENT_PREFIX}_modules_utility" STATIC
+add_library("${WEBRTC_COMPONENT_PREFIX}modules_utility" STATIC
     "${WEBRTC_MODULES_DIR}/utility/include/process_thread.h"
     "${WEBRTC_MODULES_DIR}/utility/source/process_thread_impl.cc"
     "${WEBRTC_MODULES_DIR}/utility/source/process_thread_impl.h"
 )
 
-add_library("${WEBRTC_COMPONENT_PREFIX}_modules_video_coding" STATIC
+add_library("${WEBRTC_COMPONENT_PREFIX}modules_video_coding" STATIC
     "${WEBRTC_MODULES_DIR}/video_coding/codec_timer.cc"
     "${WEBRTC_MODULES_DIR}/video_coding/codec_timer.h"
     "${WEBRTC_MODULES_DIR}/video_coding/decoder_database.cc"
@@ -477,7 +477,7 @@ add_library("${WEBRTC_COMPONENT_PREFIX}_modules_video_coding" STATIC
     "${WEBRTC_MODULES_DIR}/video_coding/codecs/vp9/svc_rate_allocator.h"
 )
 
-add_library("${WEBRTC_COMPONENT_PREFIX}_video_processing" STATIC
+add_library("${WEBRTC_COMPONENT_PREFIX}video_processing" STATIC
     "${WEBRTC_MODULES_DIR}/video_processing/util/denoiser_filter.cc"
     "${WEBRTC_MODULES_DIR}/video_processing/util/denoiser_filter_c.cc"
     "${WEBRTC_MODULES_DIR}/video_processing/util/denoiser_filter_c.h"
@@ -492,19 +492,19 @@ add_library("${WEBRTC_COMPONENT_PREFIX}_video_processing" STATIC
 )
 
 
-add_library("${WEBRTC_COMPONENT_PREFIX}_modules" STATIC "")
-target_link_libraries("${WEBRTC_COMPONENT_PREFIX}_modules"
-    "${WEBRTC_COMPONENT_PREFIX}_modules_audio_coding"
-    "${WEBRTC_COMPONENT_PREFIX}_modules_audio_device"
-    "${WEBRTC_COMPONENT_PREFIX}_modules_audio_mixer"
-    "${WEBRTC_COMPONENT_PREFIX}_modules_audio_processing"
-    "${WEBRTC_COMPONENT_PREFIX}_modules_congestion_controller"
-    "${WEBRTC_COMPONENT_PREFIX}_modules_pacing"
-    "${WEBRTC_COMPONENT_PREFIX}_modules_remote_bitrate_estimator"
-    "${WEBRTC_COMPONENT_PREFIX}_modules_rtp_rtcp"
-    "${WEBRTC_COMPONENT_PREFIX}_modules_utility"
-    "${WEBRTC_COMPONENT_PREFIX}_modules_video_coding"
-    "${WEBRTC_COMPONENT_PREFIX}_modules_video_processing"
+add_library("${WEBRTC_COMPONENT_PREFIX}modules" STATIC "")
+target_link_libraries("${WEBRTC_COMPONENT_PREFIX}modules"
+    "${WEBRTC_COMPONENT_PREFIX}modules_audio_coding"
+    "${WEBRTC_COMPONENT_PREFIX}modules_audio_device"
+    "${WEBRTC_COMPONENT_PREFIX}modules_audio_mixer"
+    "${WEBRTC_COMPONENT_PREFIX}modules_audio_processing"
+    "${WEBRTC_COMPONENT_PREFIX}modules_congestion_controller"
+    "${WEBRTC_COMPONENT_PREFIX}modules_pacing"
+    "${WEBRTC_COMPONENT_PREFIX}modules_remote_bitrate_estimator"
+    "${WEBRTC_COMPONENT_PREFIX}modules_rtp_rtcp"
+    "${WEBRTC_COMPONENT_PREFIX}modules_utility"
+    "${WEBRTC_COMPONENT_PREFIX}modules_video_coding"
+    "${WEBRTC_COMPONENT_PREFIX}modules_video_processing"
 )
 
-add_library(webrtc::modules ALIAS "${WEBRTC_COMPONENT_PREFIX}_module")
+add_library(webrtc::modules ALIAS "${WEBRTC_COMPONENT_PREFIX}module")

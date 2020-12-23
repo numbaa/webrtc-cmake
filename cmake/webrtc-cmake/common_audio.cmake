@@ -1,6 +1,6 @@
 set(WEBRTC_COMMON_AUDIO_DIR "${WEBRTC_SOURCE_DIR}/common_audio")
 
-add_library("${WEBRTC_COMPONENT_PREFIX}_common_audio_c" STATIC
+add_library("${WEBRTC_COMPONENT_PREFIX}common_audio_c" STATIC
     "${WEBRTC_COMMON_AUDIO_DIR}/ring_buffer.c"
     "${WEBRTC_COMMON_AUDIO_DIR}/ring_buffer.h"
     "${WEBRTC_COMMON_AUDIO_DIR}/signal_processing/auto_corr_to_refl_coef.c"
@@ -50,7 +50,7 @@ add_library("${WEBRTC_COMPONENT_PREFIX}_common_audio_c" STATIC
     "${WEBRTC_COMMON_AUDIO_DIR}/vad/webrtc_vad.c"
 )
 
-add_library("${WEBRTC_COMPONENT_PREFIX}_common_audio" STATIC
+add_library("${WEBRTC_COMPONENT_PREFIX}common_audio" STATIC
     "${WEBRTC_COMMON_AUDIO_DIR}/audio_converter.cc"
     "${WEBRTC_COMMON_AUDIO_DIR}/audio_converter.h"
     "${WEBRTC_COMMON_AUDIO_DIR}/audio_util.cc"
@@ -80,8 +80,9 @@ add_library("${WEBRTC_COMPONENT_PREFIX}_common_audio" STATIC
     "${WEBRTC_COMMON_AUDIO_DIR}/window_generator.h"
 )
 
-target_link_libraries("${WEBRTC_COMPONENT_PREFIX}_common_audio"
+target_link_libraries("${WEBRTC_COMPONENT_PREFIX}common_audio"
     "${WEBRTC_COMPONENT_PREFIX}_common_audio_c"
+    "${WEBRTC_COMPONENT_PREFIX}common_audio"
 )
 
-add_library(webrtc::common_audio ALIAS "${WEBRTC_COMPONENT_PREFIX}_common_audio")
+add_library(webrtc::common_audio ALIAS "${WEBRTC_COMPONENT_PREFIX}common_audio")

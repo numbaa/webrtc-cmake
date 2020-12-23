@@ -1,6 +1,6 @@
 set(WEBRTC_PC_DIR "${WEBRTC_SOURCE_DIR}/pc")
 
-add_library("${WEBRTC_COMPONENT_PREFIX}_pc" STATIC
+add_library("${WEBRTC_COMPONENT_PREFIX}pc" STATIC
     #rtc_pc_base
     "${WEBRTC_PC_DIR}/channel.cc"
     "${WEBRTC_PC_DIR}/channel.h"
@@ -165,4 +165,4 @@ add_library("${WEBRTC_COMPONENT_PREFIX}_pc" STATIC
     "${WEBRTC_PC_DIR}/dtmf_sender.h"
 )
 
-add_library(webrtc::pc ALIAS "${WEBRTC_COMPONENT_PREFIX}_pc")
+add_library(webrtc::pc ALIAS "${WEBRTC_COMPONENT_PREFIX}pc")
