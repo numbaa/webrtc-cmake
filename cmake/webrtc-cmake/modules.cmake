@@ -507,4 +507,4 @@ target_link_libraries("${WEBRTC_COMPONENT_PREFIX}modules"
     "${WEBRTC_COMPONENT_PREFIX}modules_video_processing"
 )
 
-add_library(webrtc::modules ALIAS "${WEBRTC_COMPONENT_PREFIX}module")
+add_library(webrtc::modules ALIAS "${WEBRTC_COMPONENT_PREFIX}modules")
