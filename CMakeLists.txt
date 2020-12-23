@@ -5,8 +5,8 @@ set(CMAKE_SCRIPTS_DIR "cmake")
 set(WEBRTC_SOURCE_DIR "src")
 set(THIRD_PARTY_DIR "third_party")
 
-include("${CMAKE_SCRIPTS_DIR}/third-party")
-include("${CMAKE_SCRIPTS_DIR}/webrtc")
+include("${CMAKE_SCRIPTS_DIR}/third-party.cmake")
+include("${CMAKE_SCRIPTS_DIR}/webrtc.cmake")
 
 add_library(${PROJECT_NAME} STATIC)
 target_link_libraries(${PROJECT_NAME}

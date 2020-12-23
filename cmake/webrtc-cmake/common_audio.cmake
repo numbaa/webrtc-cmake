@@ -80,7 +80,7 @@ add_library("${WEBRTC_COMPONENT_PREFIX}_common_audio" STATIC
     "${WEBRTC_COMMON_AUDIO_DIR}/window_generator.h"
 )
 
-target_link_libraries("${WEBRTC_COMPONENT_PREFIX}_common_audio" STATIC
+target_link_libraries("${WEBRTC_COMPONENT_PREFIX}_common_audio"
     "${WEBRTC_COMPONENT_PREFIX}_common_audio_c"
 )
 

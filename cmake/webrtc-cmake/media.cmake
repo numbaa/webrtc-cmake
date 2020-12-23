@@ -88,7 +88,7 @@ add_library("${WEBRTC_COMPONENT_PREFIX}_rtc_data" STATIC
 }
 
 add_library("${WEBRTC_COMPONENT_PREFIX}_rtc_media" STATIC "")
-target_link_libraries("${WEBRTC_COMPONENT_PREFIX}_rtc_media" STATIC
+target_link_libraries("${WEBRTC_COMPONENT_PREFIX}_rtc_media"
     "${WEBRTC_COMPONENT_PREFIX}_rtc_audio_video"
     "${WEBRTC_COMPONENT_PREFIX}_rtc_data"
 )

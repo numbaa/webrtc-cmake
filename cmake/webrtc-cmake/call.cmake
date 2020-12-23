@@ -77,7 +77,7 @@ add_library("${WEBRTC_COMPONENT_PREFIX}_call" STATIC
     "${WEBRTC_CALL_DIR}/receive_time_calculator.h"
 )
 
-target_link_libraries("${WEBRTC_COMPONENT_PREFIX}_call" STATIC
+target_link_libraries("${WEBRTC_COMPONENT_PREFIX}_call"
     "${WEBRTC_COMPONENT_PREFIX}_call_interfaces"
     "${WEBRTC_COMPONENT_PREFIX}_rtp_interfaces"
     "${WEBRTC_COMPONENT_PREFIX}_rtp_receiver"
