@@ -492,7 +492,7 @@ add_library("${WEBRTC_COMPONENT_PREFIX}video_processing" STATIC
 )
 
 
-add_library("${WEBRTC_COMPONENT_PREFIX}modules" STATIC "")
+add_library("${WEBRTC_COMPONENT_PREFIX}modules" STATIC "dummy.cpp")
 target_link_libraries("${WEBRTC_COMPONENT_PREFIX}modules"
     "${WEBRTC_COMPONENT_PREFIX}modules_audio_coding"
     "${WEBRTC_COMPONENT_PREFIX}modules_audio_device"

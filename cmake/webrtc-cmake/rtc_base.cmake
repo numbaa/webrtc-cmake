@@ -1,4 +1,5 @@
 set(WEBRTC_RTC_BASE_DIR "${WEBRTC_SOURCE_DIR}/rtc_base")
+message("WEBRTC_RTC_BASE_DIR:${WEBRTC_RTC_BASE_DIR}")
 
 add_library("${WEBRTC_COMPONENT_PREFIX}rtc_base" STATIC
     #rtc_base_approved
@@ -201,8 +202,8 @@ add_library("${WEBRTC_COMPONENT_PREFIX}rtc_base" STATIC
     "${WEBRTC_RTC_BASE_DIR}/ref_counted_object.h"
     "${WEBRTC_RTC_BASE_DIR}/ref_counter.h"
     #rtc_event"
-    "${WEBRTC_RTC_BASE_DIR}/../../webrtc_overrides/rtc_base/event.cc"
-    "${WEBRTC_RTC_BASE_DIR}/../../webrtc_overrides/rtc_base/event.h"
+    #"${WEBRTC_RTC_BASE_DIR}/../../webrtc_overrides/rtc_base/event.cc"
+    #"${WEBRTC_RTC_BASE_DIR}/../../webrtc_overrides/rtc_base/event.h"
     #safe_conversions"
     "${WEBRTC_RTC_BASE_DIR}/numerics/safe_conversions.h"
     "${WEBRTC_RTC_BASE_DIR}/numerics/safe_conversions_impl.h"

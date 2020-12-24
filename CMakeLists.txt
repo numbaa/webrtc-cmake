@@ -3,12 +3,13 @@ project(webrtc)
 
 set(CMAKE_SCRIPTS_DIR "cmake")
 set(WEBRTC_SOURCE_DIR "src")
-set(THIRD_PARTY_DIR "third")
+message("WEBRTC_SOURCE_DIR:${WEBRTC_SOURCE_DIR}")
+set(THIRD_PARTY_DIR "third_party")
 
 include("${CMAKE_SCRIPTS_DIR}/third-party.cmake")
 include("${CMAKE_SCRIPTS_DIR}/webrtc.cmake")
 
-add_library(${PROJECT_NAME} STATIC "")
+add_library(${PROJECT_NAME} STATIC "dummy.cpp")
 target_link_libraries(${PROJECT_NAME} STATIC
     "webrtc::api"
     "webrtc::audio"

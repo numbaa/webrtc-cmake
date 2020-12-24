@@ -82,7 +82,6 @@ add_library("${WEBRTC_COMPONENT_PREFIX}common_audio" STATIC
 
 target_link_libraries("${WEBRTC_COMPONENT_PREFIX}common_audio"
     "${WEBRTC_COMPONENT_PREFIX}_common_audio_c"
-    "${WEBRTC_COMPONENT_PREFIX}common_audio"
 )
 
 add_library(webrtc::common_audio ALIAS "${WEBRTC_COMPONENT_PREFIX}common_audio")

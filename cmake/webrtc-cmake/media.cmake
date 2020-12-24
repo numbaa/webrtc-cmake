@@ -88,14 +88,23 @@ add_library("${WEBRTC_COMPONENT_PREFIX}rtc_data" STATIC
     "${WEBRTC_MEDIA_DIR}/sctp/sctp_transport_internal.h"
 )
 
-add_library("${WEBRTC_COMPONENT_PREFIX}rtc_media" STATIC "")
+add_library("${WEBRTC_COMPONENT_PREFIX}rtc_media" STATIC "dummy.cpp")
 target_link_libraries("${WEBRTC_COMPONENT_PREFIX}rtc_media"
     "${WEBRTC_COMPONENT_PREFIX}rtc_audio_video"
     "${WEBRTC_COMPONENT_PREFIX}rtc_data"
 )
 
-add_library("${WEBRTC_COMPONENT_PREFIX}media" STATIC
-
+add_library("${WEBRTC_COMPONENT_PREFIX}media" STATIC "dummy.cpp")
+target_link_libraries("${WEBRTC_COMPONENT_PREFIX}media"
+    "${WEBRTC_COMPONENT_PREFIX}rtc_media"
+    "${WEBRTC_COMPONENT_PREFIX}rtc_media_engine_defaults"
+    "${WEBRTC_COMPONENT_PREFIX}rtc_internal_video_codecs"
+    "${WEBRTC_COMPONENT_PREFIX}rtc_encoder_simulcast_proxy"
+    "${WEBRTC_COMPONENT_PREFIX}rtc_encoder_simulcast_proxy"
+    "${WEBRTC_COMPONENT_PREFIX}rtc_simulcast_encoder_adapter"
+    "${WEBRTC_COMPONENT_PREFIX}rtc_constants"
+    "${WEBRTC_COMPONENT_PREFIX}rtc_media_base"
 )
+
 
 add_library(webrtc::media ALIAS "${WEBRTC_COMPONENT_PREFIX}media")

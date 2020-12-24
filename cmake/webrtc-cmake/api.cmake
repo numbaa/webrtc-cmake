@@ -86,3 +86,19 @@ add_library("${WEBRTC_COMPONENT_PREFIX}api_default_task_queue_factory" STATIC
     "${WEBRTC_API_DIR}/task_queue/default_task_queue_factory.h"
     "${WEBRTC_API_DIR}/task_queue/default_task_queue_factory_stdlib.cc"
 )
+
+add_library("${WEBRTC_COMPONENT_PREFIX}api" STATIC
+    "dummy.cpp"
+)
+target_link_libraries("${WEBRTC_COMPONENT_PREFIX}api"
+    "${WEBRTC_COMPONENT_PREFIX}api_default_task_queue_factory"
+    "${WEBRTC_COMPONENT_PREFIX}api_task_queue"
+    "${WEBRTC_COMPONENT_PREFIX}api_rtc_event_log_factory"
+    "${WEBRTC_COMPONENT_PREFIX}api_crypto"
+    "${WEBRTC_COMPONENT_PREFIX}api_transport_api"
+    "${WEBRTC_COMPONENT_PREFIX}api_rtc_error"
+    "${WEBRTC_COMPONENT_PREFIX}api_libjingle_peerconnection_api"
+    "${WEBRTC_COMPONENT_PREFIX}api_create_peerconnection_factory"
+)
+
+add_library(webrtc::api ALIAS "${WEBRTC_COMPONENT_PREFIX}api")
