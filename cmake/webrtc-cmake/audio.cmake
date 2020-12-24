@@ -1,6 +1,6 @@
 set(WEBRTC_AUDIO_DIR "${WEBRTC_SOURCE_DIR}/audio")
 
-add_library("${WEBRTC_COMPONENT_PREFIX}audio" STATIC
+add_library("${WEBRTC_COMPONENT_PREFIX}audio" OBJECT
     "${WEBRTC_AUDIO_DIR}/audio_level.cc"
     "${WEBRTC_AUDIO_DIR}/audio_level.h"
     "${WEBRTC_AUDIO_DIR}/audio_receive_stream.cc"
@@ -26,4 +26,7 @@ add_library("${WEBRTC_COMPONENT_PREFIX}audio" STATIC
     "${WEBRTC_AUDIO_DIR}/remix_resample.h"
 )
 
-add_library(webrtc::audio ALIAS "${WEBRTC_COMPONENT_PREFIX}audio")
+set_target_properties("${WEBRTC_COMPONENT_PREFIX}audio" PROPERTIES FOLDER "audio")
+
+
+#add_library(webrtc::audio ALIAS "${WEBRTC_COMPONENT_PREFIX}audio")

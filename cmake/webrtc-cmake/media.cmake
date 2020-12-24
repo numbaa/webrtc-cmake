@@ -1,6 +1,6 @@
 set(WEBRTC_MEDIA_DIR "${WEBRTC_SOURCE_DIR}/media")
 
-add_library("${WEBRTC_COMPONENT_PREFIX}rtc_media_base" STATIC
+add_library("${WEBRTC_COMPONENT_PREFIX}rtc_media_base" OBJECT
     "${WEBRTC_MEDIA_DIR}/base/adapted_video_track_source.cc"
     "${WEBRTC_MEDIA_DIR}/base/adapted_video_track_source.h"
     "${WEBRTC_MEDIA_DIR}/base/audio_source.h"
@@ -32,23 +32,28 @@ add_library("${WEBRTC_COMPONENT_PREFIX}rtc_media_base" STATIC
     "${WEBRTC_MEDIA_DIR}/base/video_source_base.cc"
     "${WEBRTC_MEDIA_DIR}/base/video_source_base.h"
 )
+set_target_properties("${WEBRTC_COMPONENT_PREFIX}rtc_media_base" PROPERTIES FOLDER "meida")
 
-add_library("${WEBRTC_COMPONENT_PREFIX}rtc_constants" STATIC
+
+add_library("${WEBRTC_COMPONENT_PREFIX}rtc_constants" OBJECT
     "${WEBRTC_MEDIA_DIR}/engine/constants.cc"
     "${WEBRTC_MEDIA_DIR}/engine/constants.h"
 )
+set_target_properties("${WEBRTC_COMPONENT_PREFIX}rtc_constants" PROPERTIES FOLDER "meida")
 
-add_library("${WEBRTC_COMPONENT_PREFIX}rtc_simulcast_encoder_adapter" STATIC
+add_library("${WEBRTC_COMPONENT_PREFIX}rtc_simulcast_encoder_adapter" OBJECT
     "${WEBRTC_MEDIA_DIR}/engine/simulcast_encoder_adapter.cc"
     "${WEBRTC_MEDIA_DIR}/engine/simulcast_encoder_adapter.h"
 )
+set_target_properties("${WEBRTC_COMPONENT_PREFIX}rtc_simulcast_encoder_adapter" PROPERTIES FOLDER "meida")
 
-add_library("${WEBRTC_COMPONENT_PREFIX}rtc_encoder_simulcast_proxy" STATIC
+add_library("${WEBRTC_COMPONENT_PREFIX}rtc_encoder_simulcast_proxy" OBJECT
     "${WEBRTC_MEDIA_DIR}/engine/encoder_simulcast_proxy.cc"
     "${WEBRTC_MEDIA_DIR}/engine/encoder_simulcast_proxy.h"
 )
+set_target_properties("${WEBRTC_COMPONENT_PREFIX}rtc_encoder_simulcast_proxy" PROPERTIES FOLDER "meida")
 
-add_library("${WEBRTC_COMPONENT_PREFIX}rtc_internal_video_codecs" STATIC
+add_library("${WEBRTC_COMPONENT_PREFIX}rtc_internal_video_codecs" OBJECT
     "${WEBRTC_MEDIA_DIR}/engine/fake_video_codec_factory.cc"
     "${WEBRTC_MEDIA_DIR}/engine/fake_video_codec_factory.h"
     "${WEBRTC_MEDIA_DIR}/engine/internal_decoder_factory.cc"
@@ -58,8 +63,9 @@ add_library("${WEBRTC_COMPONENT_PREFIX}rtc_internal_video_codecs" STATIC
     "${WEBRTC_MEDIA_DIR}/engine/multiplex_codec_factory.cc"
     "${WEBRTC_MEDIA_DIR}/engine/multiplex_codec_factory.h"
 )
+set_target_properties("${WEBRTC_COMPONENT_PREFIX}rtc_internal_video_codecs" PROPERTIES FOLDER "meida")
 
-add_library("${WEBRTC_COMPONENT_PREFIX}rtc_audio_video" STATIC
+add_library("${WEBRTC_COMPONENT_PREFIX}rtc_audio_video" OBJECT
     "${WEBRTC_MEDIA_DIR}/engine/adm_helpers.cc"
     "${WEBRTC_MEDIA_DIR}/engine/adm_helpers.h"
     "${WEBRTC_MEDIA_DIR}/engine/null_webrtc_video_engine.h"
@@ -76,26 +82,30 @@ add_library("${WEBRTC_COMPONENT_PREFIX}rtc_audio_video" STATIC
     "${WEBRTC_MEDIA_DIR}/engine/webrtc_voice_engine.cc"
     "${WEBRTC_MEDIA_DIR}/engine/webrtc_voice_engine.h"
 )
+set_target_properties("${WEBRTC_COMPONENT_PREFIX}rtc_audio_video" PROPERTIES FOLDER "meida")
 
-add_library("${WEBRTC_COMPONENT_PREFIX}rtc_media_engine_defaults" STATIC
+add_library("${WEBRTC_COMPONENT_PREFIX}rtc_media_engine_defaults" OBJECT
     "${WEBRTC_MEDIA_DIR}/engine/webrtc_media_engine_defaults.cc"
     "${WEBRTC_MEDIA_DIR}/engine/webrtc_media_engine_defaults.h"
 )
+set_target_properties("${WEBRTC_COMPONENT_PREFIX}rtc_media_engine_defaults" PROPERTIES FOLDER "meida")
 
-add_library("${WEBRTC_COMPONENT_PREFIX}rtc_data" STATIC
+add_library("${WEBRTC_COMPONENT_PREFIX}rtc_data" OBJECT
     "${WEBRTC_MEDIA_DIR}/sctp/sctp_transport.cc"
     "${WEBRTC_MEDIA_DIR}/sctp/sctp_transport.h"
     "${WEBRTC_MEDIA_DIR}/sctp/sctp_transport_internal.h"
 )
+set_target_properties("${WEBRTC_COMPONENT_PREFIX}rtc_data" PROPERTIES FOLDER "meida")
 
-add_library("${WEBRTC_COMPONENT_PREFIX}rtc_media" STATIC "dummy.cpp")
+add_library("${WEBRTC_COMPONENT_PREFIX}rtc_media" OBJECT "dummy.cpp")
 target_link_libraries("${WEBRTC_COMPONENT_PREFIX}rtc_media"
     "${WEBRTC_COMPONENT_PREFIX}rtc_audio_video"
     "${WEBRTC_COMPONENT_PREFIX}rtc_data"
 )
+set_target_properties("${WEBRTC_COMPONENT_PREFIX}rtc_media" PROPERTIES FOLDER "meida")
 
-add_library("${WEBRTC_COMPONENT_PREFIX}media" STATIC "dummy.cpp")
-target_link_libraries("${WEBRTC_COMPONENT_PREFIX}media"
+add_custom_target("${WEBRTC_COMPONENT_PREFIX}media")
+add_dependencies("${WEBRTC_COMPONENT_PREFIX}media"
     "${WEBRTC_COMPONENT_PREFIX}rtc_media"
     "${WEBRTC_COMPONENT_PREFIX}rtc_media_engine_defaults"
     "${WEBRTC_COMPONENT_PREFIX}rtc_internal_video_codecs"
@@ -105,6 +115,6 @@ target_link_libraries("${WEBRTC_COMPONENT_PREFIX}media"
     "${WEBRTC_COMPONENT_PREFIX}rtc_constants"
     "${WEBRTC_COMPONENT_PREFIX}rtc_media_base"
 )
+set_target_properties("${WEBRTC_COMPONENT_PREFIX}media" PROPERTIES FOLDER "meida")
 
-
-add_library(webrtc::media ALIAS "${WEBRTC_COMPONENT_PREFIX}media")
+#add_library(webrtc::media ALIAS "${WEBRTC_COMPONENT_PREFIX}media")

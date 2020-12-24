@@ -1,6 +1,6 @@
 set(WEBRTC_COMMON_VIDEO_DIR "${WEBRTC_SOURCE_DIR}/common_video")
 
-add_library("${WEBRTC_COMPONENT_PREFIX}common_video" STATIC
+add_library("${WEBRTC_COMPONENT_PREFIX}common_video" OBJECT
     "${WEBRTC_COMMON_VIDEO_DIR}/bitrate_adjuster.cc"
     "${WEBRTC_COMMON_VIDEO_DIR}/frame_rate_estimator.cc"
     "${WEBRTC_COMMON_VIDEO_DIR}/frame_rate_estimator.h"
@@ -28,5 +28,6 @@ add_library("${WEBRTC_COMPONENT_PREFIX}common_video" STATIC
     "${WEBRTC_COMMON_VIDEO_DIR}/video_render_frames.cc"
     "${WEBRTC_COMMON_VIDEO_DIR}/video_render_frames.h"
 )
+set_target_properties("${WEBRTC_COMPONENT_PREFIX}common_video" PROPERTIES FOLDER "common_video")
 
-add_library(webrtc::common_video ALIAS "${WEBRTC_COMPONENT_PREFIX}common_video")
+#add_library(webrtc::common_video ALIAS "${WEBRTC_COMPONENT_PREFIX}common_video")

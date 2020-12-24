@@ -58,6 +58,7 @@ add_library(${LIB_YUV} STATIC
     "${LIB_YUV_ROOT}/source/scale_win.cc"
     "${LIB_YUV_ROOT}/source/video_common.cc"
 )
+set_target_properties(${LIB_YUV} PROPERTIES FOLDER ${LIB_YUV_ROOT})
 
 target_include_directories(${LIB_YUV}
    PUBLIC

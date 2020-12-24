@@ -425,6 +425,7 @@ add_library(${LIB_VPX} STATIC
     "${LIB_VPX_ROOT}/source/libvpx/vpx_dsp/x86/quantize_ssse3.c"
     "${LIB_VPX_ROOT}/source/libvpx/vpx_dsp/x86/vpx_subpixel_8t_intrin_ssse3.c"
 )
+set_target_properties(${LIB_VPX} PROPERTIES FOLDER ${LIB_VPX_ROOT})
 
 #asm how?
 # add_library("libvpx_asm"

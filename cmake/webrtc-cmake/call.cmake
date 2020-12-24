@@ -1,6 +1,6 @@
 set(WEBRTC_CALL_DIR "${WEBRTC_SOURCE_DIR}/call")
 
-add_library("${WEBRTC_COMPONENT_PREFIX}call_interfaces" STATIC
+add_library("${WEBRTC_COMPONENT_PREFIX}call_interfaces" OBJECT
     "${WEBRTC_CALL_DIR}/audio_receive_stream.cc"
     "${WEBRTC_CALL_DIR}/audio_receive_stream.h"
     "${WEBRTC_CALL_DIR}/audio_send_stream.h"
@@ -15,16 +15,18 @@ add_library("${WEBRTC_COMPONENT_PREFIX}call_interfaces" STATIC
     "${WEBRTC_CALL_DIR}/syncable.cc"
     "${WEBRTC_CALL_DIR}/syncable.h"
 )
+set_target_properties("${WEBRTC_COMPONENT_PREFIX}call_interfaces" PROPERTIES FOLDER "call")
 
-add_library("${WEBRTC_COMPONENT_PREFIX}rtp_interfaces" STATIC
+add_library("${WEBRTC_COMPONENT_PREFIX}rtp_interfaces" OBJECT
     "${WEBRTC_CALL_DIR}/rtp_config.cc"
     "${WEBRTC_CALL_DIR}/rtp_config.h"
     "${WEBRTC_CALL_DIR}/rtp_packet_sink_interface.h"
     "${WEBRTC_CALL_DIR}/rtp_stream_receiver_controller_interface.h"
     "${WEBRTC_CALL_DIR}/rtp_transport_controller_send_interface.h"
 )
+set_target_properties("${WEBRTC_COMPONENT_PREFIX}rtp_interfaces" PROPERTIES FOLDER "call")
 
-add_library("${WEBRTC_COMPONENT_PREFIX}rtp_receiver" STATIC
+add_library("${WEBRTC_COMPONENT_PREFIX}rtp_receiver" OBJECT
     "${WEBRTC_CALL_DIR}/rtp_demuxer.cc"
     "${WEBRTC_CALL_DIR}/rtp_demuxer.h"
     "${WEBRTC_CALL_DIR}/rtp_stream_receiver_controller.cc"
@@ -32,8 +34,9 @@ add_library("${WEBRTC_COMPONENT_PREFIX}rtp_receiver" STATIC
     "${WEBRTC_CALL_DIR}/rtx_receive_stream.cc"
     "${WEBRTC_CALL_DIR}/rtx_receive_stream.h"
 )
+set_target_properties("${WEBRTC_COMPONENT_PREFIX}rtp_receiver" PROPERTIES FOLDER "call")
 
-add_library("${WEBRTC_COMPONENT_PREFIX}rtp_sender" STATIC
+add_library("${WEBRTC_COMPONENT_PREFIX}rtp_sender" OBJECT
     "${WEBRTC_CALL_DIR}/rtp_payload_params.cc"
     "${WEBRTC_CALL_DIR}/rtp_payload_params.h"
     "${WEBRTC_CALL_DIR}/rtp_transport_controller_send.cc"
@@ -42,30 +45,35 @@ add_library("${WEBRTC_COMPONENT_PREFIX}rtp_sender" STATIC
     "${WEBRTC_CALL_DIR}/rtp_video_sender.h"
     "${WEBRTC_CALL_DIR}/rtp_video_sender_interface.h"
 )
+set_target_properties("${WEBRTC_COMPONENT_PREFIX}rtp_sender" PROPERTIES FOLDER "call")
 
-add_library("${WEBRTC_COMPONENT_PREFIX}bitrate_configurator" STATIC
+add_library("${WEBRTC_COMPONENT_PREFIX}bitrate_configurator" OBJECT
     "${WEBRTC_CALL_DIR}/rtp_bitrate_configurator.cc"
     "${WEBRTC_CALL_DIR}/rtp_bitrate_configurator.h"
 )
+set_target_properties("${WEBRTC_COMPONENT_PREFIX}bitrate_configurator" PROPERTIES FOLDER "call")
 
-add_library("${WEBRTC_COMPONENT_PREFIX}bitrate_allocator" STATIC
+add_library("${WEBRTC_COMPONENT_PREFIX}bitrate_allocator" OBJECT
     "${WEBRTC_CALL_DIR}/bitrate_allocator.cc"
     "${WEBRTC_CALL_DIR}/bitrate_allocator.h"
 )
+set_target_properties("${WEBRTC_COMPONENT_PREFIX}bitrate_allocator" PROPERTIES FOLDER "call")
 
-add_library("${WEBRTC_COMPONENT_PREFIX}simulated_network" STATIC
+add_library("${WEBRTC_COMPONENT_PREFIX}simulated_network" OBJECT
     "${WEBRTC_CALL_DIR}/simulated_network.cc"
     "${WEBRTC_CALL_DIR}/simulated_network.h"
 )
+set_target_properties("${WEBRTC_COMPONENT_PREFIX}simulated_network" PROPERTIES FOLDER "call")
 
-add_library("${WEBRTC_COMPONENT_PREFIX}video_stream_api" STATIC
+add_library("${WEBRTC_COMPONENT_PREFIX}video_stream_api" OBJECT
     "${WEBRTC_CALL_DIR}/video_receive_stream.cc"
     "${WEBRTC_CALL_DIR}/video_receive_stream.h"
     "${WEBRTC_CALL_DIR}/video_send_stream.cc"
     "${WEBRTC_CALL_DIR}/video_send_stream.h"
 )
+set_target_properties("${WEBRTC_COMPONENT_PREFIX}video_stream_api" PROPERTIES FOLDER "call")
 
-add_library("${WEBRTC_COMPONENT_PREFIX}call" STATIC
+add_library("${WEBRTC_COMPONENT_PREFIX}call" OBJECT
     "${WEBRTC_CALL_DIR}/call.cc"
     "${WEBRTC_CALL_DIR}/call_factory.cc"
     "${WEBRTC_CALL_DIR}/call_factory.h"
@@ -76,6 +84,7 @@ add_library("${WEBRTC_COMPONENT_PREFIX}call" STATIC
     "${WEBRTC_CALL_DIR}/receive_time_calculator.cc"
     "${WEBRTC_CALL_DIR}/receive_time_calculator.h"
 )
+set_target_properties("${WEBRTC_COMPONENT_PREFIX}call" PROPERTIES FOLDER "call")
 
 target_link_libraries("${WEBRTC_COMPONENT_PREFIX}call"
     "${WEBRTC_COMPONENT_PREFIX}call_interfaces"
@@ -88,4 +97,4 @@ target_link_libraries("${WEBRTC_COMPONENT_PREFIX}call"
     "${WEBRTC_COMPONENT_PREFIX}video_stream_api"
 )
 
-add_library(webrtc::call ALIAS "${WEBRTC_COMPONENT_PREFIX}call")
+#add_library(webrtc::call ALIAS "${WEBRTC_COMPONENT_PREFIX}call")

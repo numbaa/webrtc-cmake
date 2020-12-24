@@ -47,6 +47,7 @@ add_library(${LIB_SRTP} STATIC
    "${LIB_SRTP_ROOT}/srtp/ekt.c"
    "${LIB_SRTP_ROOT}/srtp/srtp.c"
 )
+set_target_properties(${LIB_SRTP} PROPERTIES FOLDER ${LIB_SRTP_ROOT})
 
 target_include_directories(${LIB_SRTP}
    PUBLIC

@@ -1,13 +1,15 @@
 
 set(WEBRTC_API_DIR "${WEBRTC_SOURCE_DIR}/api")
 
-add_library("${WEBRTC_COMPONENT_PREFIX}api_create_peerconnection_factory" STATIC
+add_library("create_peerconnection_factory" OBJECT
     "${WEBRTC_API_DIR}/create_peerconnection_factory.cc"
     "${WEBRTC_API_DIR}/create_peerconnection_factory.h"
 )
 
+set_target_properties("create_peerconnection_factory" PROPERTIES FOLDER "api")
 
-add_library("${WEBRTC_COMPONENT_PREFIX}api_libjingle_peerconnection_api" STATIC
+
+add_library("libjingle_peerconnection_api" OBJECT
     "${WEBRTC_API_DIR}/candidate.cc"
     "${WEBRTC_API_DIR}/candidate.h"
     "${WEBRTC_API_DIR}/crypto_params.h"
@@ -46,25 +48,29 @@ add_library("${WEBRTC_COMPONENT_PREFIX}api_libjingle_peerconnection_api" STATIC
     "${WEBRTC_API_DIR}/uma_metrics.h"
     "${WEBRTC_API_DIR}/video_track_source_proxy.h"
 )
+set_target_properties("libjingle_peerconnection_api" PROPERTIES FOLDER "api")
 
-add_library("${WEBRTC_COMPONENT_PREFIX}api_rtc_error" STATIC
+add_library("rtc_error" OBJECT
     "${WEBRTC_API_DIR}/rtc_error.cc"
     "${WEBRTC_API_DIR}/rtc_error.h"
 )
+set_target_properties("rtc_error" PROPERTIES FOLDER "api")
 
-add_library("${WEBRTC_COMPONENT_PREFIX}api_transport_api" STATIC
+add_library("transport_api" OBJECT
     "${WEBRTC_API_DIR}/call/transport.cc"
     "${WEBRTC_API_DIR}/call/transport.h"
 )
+set_target_properties("transport_api" PROPERTIES FOLDER "api")
 
-add_library("${WEBRTC_COMPONENT_PREFIX}api_crypto" STATIC
+add_library("crypto" OBJECT
     "${WEBRTC_API_DIR}/crypto/crypto_options.cc"
     "${WEBRTC_API_DIR}/crypto/crypto_options.h"
     "${WEBRTC_API_DIR}/crypto/frame_encryptor_interface.h"
     "${WEBRTC_API_DIR}/crypto/frame_decryptor_interface.h"
 )
+set_target_properties("crypto" PROPERTIES FOLDER "api")
 
-add_library("${WEBRTC_COMPONENT_PREFIX}api_rtc_event_log_factory" STATIC
+add_library("rtc_event_log_factory" OBJECT
     "${WEBRTC_API_DIR}/rtc_event_log/rtc_event.cc"
     "${WEBRTC_API_DIR}/rtc_event_log/rtc_event.h"
     "${WEBRTC_API_DIR}/rtc_event_log/rtc_event_log.cc"
@@ -74,31 +80,33 @@ add_library("${WEBRTC_COMPONENT_PREFIX}api_rtc_event_log_factory" STATIC
     "${WEBRTC_API_DIR}/rtc_event_log/rtc_event_log_factory.h"
 
 )
+set_target_properties("rtc_event_log_factory" PROPERTIES FOLDER "api")
 
-add_library("${WEBRTC_COMPONENT_PREFIX}api_task_queue" STATIC
+add_library("task_queue" OBJECT
     "${WEBRTC_API_DIR}/task_queue/queued_task.h"
     "${WEBRTC_API_DIR}/task_queue/task_queue_base.h"
     "${WEBRTC_API_DIR}/task_queue/task_queue_factory.h"
     "${WEBRTC_API_DIR}/task_queue/task_queue_base.cc"
 )
+set_target_properties("task_queue" PROPERTIES FOLDER "api")
 
-add_library("${WEBRTC_COMPONENT_PREFIX}api_default_task_queue_factory" STATIC
+add_library("default_task_queue_factory" OBJECT
     "${WEBRTC_API_DIR}/task_queue/default_task_queue_factory.h"
     "${WEBRTC_API_DIR}/task_queue/default_task_queue_factory_stdlib.cc"
 )
+set_target_properties("default_task_queue_factory" PROPERTIES FOLDER "api")
 
-add_library("${WEBRTC_COMPONENT_PREFIX}api" STATIC
-    "dummy.cpp"
-)
-target_link_libraries("${WEBRTC_COMPONENT_PREFIX}api"
-    "${WEBRTC_COMPONENT_PREFIX}api_default_task_queue_factory"
-    "${WEBRTC_COMPONENT_PREFIX}api_task_queue"
-    "${WEBRTC_COMPONENT_PREFIX}api_rtc_event_log_factory"
-    "${WEBRTC_COMPONENT_PREFIX}api_crypto"
-    "${WEBRTC_COMPONENT_PREFIX}api_transport_api"
-    "${WEBRTC_COMPONENT_PREFIX}api_rtc_error"
-    "${WEBRTC_COMPONENT_PREFIX}api_libjingle_peerconnection_api"
-    "${WEBRTC_COMPONENT_PREFIX}api_create_peerconnection_factory"
+add_custom_target("api")
+set_target_properties("api" PROPERTIES FOLDER "api")
+add_dependencies("api"
+    "default_task_queue_factory"
+    "task_queue"
+    "rtc_event_log_factory"
+    "crypto"
+    "transport_api"
+    "rtc_error"
+    "libjingle_peerconnection_api"
+    "create_peerconnection_factory"
 )
 
-add_library(webrtc::api ALIAS "${WEBRTC_COMPONENT_PREFIX}api")
+#add_library(webrtc::api ALIAS "api")

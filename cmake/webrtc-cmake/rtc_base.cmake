@@ -1,7 +1,6 @@
 set(WEBRTC_RTC_BASE_DIR "${WEBRTC_SOURCE_DIR}/rtc_base")
-message("WEBRTC_RTC_BASE_DIR:${WEBRTC_RTC_BASE_DIR}")
 
-add_library("${WEBRTC_COMPONENT_PREFIX}rtc_base" STATIC
+add_library("${WEBRTC_COMPONENT_PREFIX}rtc_base" OBJECT
     #rtc_base_approved
     "${WEBRTC_RTC_BASE_DIR}/async_invoker.cc"
     "${WEBRTC_RTC_BASE_DIR}/async_invoker.h"
@@ -213,5 +212,7 @@ add_library("${WEBRTC_COMPONENT_PREFIX}rtc_base" STATIC
     "${WEBRTC_RTC_BASE_DIR}/time_utils.cc"
     "${WEBRTC_RTC_BASE_DIR}/time_utils.h"
 )
+set_target_properties("${WEBRTC_COMPONENT_PREFIX}rtc_base" PROPERTIES FOLDER "rtc_base")
 
-add_library(webrtc::rtc_base ALIAS "${WEBRTC_COMPONENT_PREFIX}rtc_base")
+
+#add_library(webrtc::rtc_base ALIAS "${WEBRTC_COMPONENT_PREFIX}rtc_base")

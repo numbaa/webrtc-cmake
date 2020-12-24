@@ -4,6 +4,7 @@ add_library(${PFFFT} STATIC
    "${PFFFT_ROOT}/src/pffft.c"
    "${PFFFT_ROOT}/src/pffft.h"
 )
+set_target_properties(${PFFFT} PROPERTIES FOLDER ${PFFFT_ROOT})
 
 target_include_directories(${PFFFT}
    PUBLIC
