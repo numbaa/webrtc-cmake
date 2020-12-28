@@ -1,4 +1,5 @@
 set(WEBRTC_VIDEO_DIR "${WEBRTC_SOURCE_DIR}/video")
+set(WEBRTC_VIDEO_IDE_FOLDER "webrtc/video")
 
 add_library("${WEBRTC_COMPONENT_PREFIX}video" OBJECT
     "${WEBRTC_VIDEO_DIR}/buffered_frame_decryptor.cc"
@@ -59,7 +60,7 @@ add_library("${WEBRTC_COMPONENT_PREFIX}video" OBJECT
     "${WEBRTC_VIDEO_DIR}/frame_dumping_decoder.cc"
     "${WEBRTC_VIDEO_DIR}/frame_dumping_decoder.h"
 )
-set_target_properties("${WEBRTC_COMPONENT_PREFIX}video" PROPERTIES FOLDER "video")
+set_target_properties("${WEBRTC_COMPONENT_PREFIX}video" PROPERTIES FOLDER ${WEBRTC_VIDEO_IDE_FOLDER})
 
 
 #api/video_stream_encoder_create depend on this
@@ -77,7 +78,7 @@ add_library("${WEBRTC_COMPONENT_PREFIX}video_stream_encoder_impl" OBJECT
     "${WEBRTC_VIDEO_DIR}/video_stream_encoder.cc"
     "${WEBRTC_VIDEO_DIR}/video_stream_encoder.h"
 )
-set_target_properties("${WEBRTC_COMPONENT_PREFIX}video_stream_encoder_impl" PROPERTIES FOLDER "video")
+set_target_properties("${WEBRTC_COMPONENT_PREFIX}video_stream_encoder_impl" PROPERTIES FOLDER ${WEBRTC_VIDEO_IDE_FOLDER})
 
 
 #add_library(webrtc::video ALIAS "${WEBRTC_COMPONENT_PREFIX}video")

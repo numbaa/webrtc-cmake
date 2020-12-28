@@ -1,4 +1,5 @@
 set(WEBRTC_COMMON_AUDIO_DIR "${WEBRTC_SOURCE_DIR}/common_audio")
+set(WEBRTC_COMMON_AUDIO_IDE_FOLDER "webrtc/common_audio")
 
 add_library("${WEBRTC_COMPONENT_PREFIX}common_audio_c" OBJECT
     "${WEBRTC_COMMON_AUDIO_DIR}/ring_buffer.c"
@@ -49,7 +50,7 @@ add_library("${WEBRTC_COMPONENT_PREFIX}common_audio_c" OBJECT
     "${WEBRTC_COMMON_AUDIO_DIR}/vad/vad_sp.h"
     "${WEBRTC_COMMON_AUDIO_DIR}/vad/webrtc_vad.c"
 )
-set_target_properties("${WEBRTC_COMPONENT_PREFIX}common_audio_c" PROPERTIES FOLDER "common_audio")
+set_target_properties("${WEBRTC_COMPONENT_PREFIX}common_audio_c" PROPERTIES FOLDER ${WEBRTC_COMMON_AUDIO_IDE_FOLDER})
 
 add_library("${WEBRTC_COMPONENT_PREFIX}common_audio" OBJECT
     "${WEBRTC_COMMON_AUDIO_DIR}/audio_converter.cc"
@@ -80,7 +81,7 @@ add_library("${WEBRTC_COMPONENT_PREFIX}common_audio" OBJECT
     "${WEBRTC_COMMON_AUDIO_DIR}/window_generator.cc"
     "${WEBRTC_COMMON_AUDIO_DIR}/window_generator.h"
 )
-set_target_properties("${WEBRTC_COMPONENT_PREFIX}common_audio" PROPERTIES FOLDER "common_audio")
+set_target_properties("${WEBRTC_COMPONENT_PREFIX}common_audio" PROPERTIES FOLDER ${WEBRTC_COMMON_AUDIO_IDE_FOLDER})
 
 target_link_libraries("${WEBRTC_COMPONENT_PREFIX}common_audio"
     "${WEBRTC_COMPONENT_PREFIX}_common_audio_c"

@@ -10,9 +10,14 @@ set(THIRD_PARTY_DIR "third_party")
 include("${CMAKE_SCRIPTS_DIR}/third-party.cmake")
 include("${CMAKE_SCRIPTS_DIR}/webrtc.cmake")
 
-add_library(${PROJECT_NAME} STATIC "dummy.cpp")
-target_link_libraries(${PROJECT_NAME} STATIC
+add_library(${PROJECT_NAME} SHARED "dummy.cpp")
+add_library("${PROJECT_NAME}-static" STATIC "dummy.cpp")
 
-
+target_link_libraries("${PROJECT_NAME}-static"
     "absl::optional"
+)
+
+target_link_libraries(${PROJECT_NAME}
+    PUBLIC
+        "${PROJECT_NAME}-static"
 )

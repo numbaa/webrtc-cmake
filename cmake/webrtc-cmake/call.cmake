@@ -1,4 +1,5 @@
 set(WEBRTC_CALL_DIR "${WEBRTC_SOURCE_DIR}/call")
+set(WEBRTC_CALL_IDE_FOLDER "webrtc/call")
 
 add_library("${WEBRTC_COMPONENT_PREFIX}call_interfaces" OBJECT
     "${WEBRTC_CALL_DIR}/audio_receive_stream.cc"
@@ -15,7 +16,7 @@ add_library("${WEBRTC_COMPONENT_PREFIX}call_interfaces" OBJECT
     "${WEBRTC_CALL_DIR}/syncable.cc"
     "${WEBRTC_CALL_DIR}/syncable.h"
 )
-set_target_properties("${WEBRTC_COMPONENT_PREFIX}call_interfaces" PROPERTIES FOLDER "call")
+set_target_properties("${WEBRTC_COMPONENT_PREFIX}call_interfaces" PROPERTIES FOLDER ${WEBRTC_CALL_IDE_FOLDER})
 
 add_library("${WEBRTC_COMPONENT_PREFIX}rtp_interfaces" OBJECT
     "${WEBRTC_CALL_DIR}/rtp_config.cc"
@@ -24,7 +25,7 @@ add_library("${WEBRTC_COMPONENT_PREFIX}rtp_interfaces" OBJECT
     "${WEBRTC_CALL_DIR}/rtp_stream_receiver_controller_interface.h"
     "${WEBRTC_CALL_DIR}/rtp_transport_controller_send_interface.h"
 )
-set_target_properties("${WEBRTC_COMPONENT_PREFIX}rtp_interfaces" PROPERTIES FOLDER "call")
+set_target_properties("${WEBRTC_COMPONENT_PREFIX}rtp_interfaces" PROPERTIES FOLDER ${WEBRTC_CALL_IDE_FOLDER})
 
 add_library("${WEBRTC_COMPONENT_PREFIX}rtp_receiver" OBJECT
     "${WEBRTC_CALL_DIR}/rtp_demuxer.cc"
@@ -34,7 +35,7 @@ add_library("${WEBRTC_COMPONENT_PREFIX}rtp_receiver" OBJECT
     "${WEBRTC_CALL_DIR}/rtx_receive_stream.cc"
     "${WEBRTC_CALL_DIR}/rtx_receive_stream.h"
 )
-set_target_properties("${WEBRTC_COMPONENT_PREFIX}rtp_receiver" PROPERTIES FOLDER "call")
+set_target_properties("${WEBRTC_COMPONENT_PREFIX}rtp_receiver" PROPERTIES FOLDER ${WEBRTC_CALL_IDE_FOLDER})
 
 add_library("${WEBRTC_COMPONENT_PREFIX}rtp_sender" OBJECT
     "${WEBRTC_CALL_DIR}/rtp_payload_params.cc"
@@ -45,25 +46,25 @@ add_library("${WEBRTC_COMPONENT_PREFIX}rtp_sender" OBJECT
     "${WEBRTC_CALL_DIR}/rtp_video_sender.h"
     "${WEBRTC_CALL_DIR}/rtp_video_sender_interface.h"
 )
-set_target_properties("${WEBRTC_COMPONENT_PREFIX}rtp_sender" PROPERTIES FOLDER "call")
+set_target_properties("${WEBRTC_COMPONENT_PREFIX}rtp_sender" PROPERTIES FOLDER ${WEBRTC_CALL_IDE_FOLDER})
 
 add_library("${WEBRTC_COMPONENT_PREFIX}bitrate_configurator" OBJECT
     "${WEBRTC_CALL_DIR}/rtp_bitrate_configurator.cc"
     "${WEBRTC_CALL_DIR}/rtp_bitrate_configurator.h"
 )
-set_target_properties("${WEBRTC_COMPONENT_PREFIX}bitrate_configurator" PROPERTIES FOLDER "call")
+set_target_properties("${WEBRTC_COMPONENT_PREFIX}bitrate_configurator" PROPERTIES FOLDER ${WEBRTC_CALL_IDE_FOLDER})
 
 add_library("${WEBRTC_COMPONENT_PREFIX}bitrate_allocator" OBJECT
     "${WEBRTC_CALL_DIR}/bitrate_allocator.cc"
     "${WEBRTC_CALL_DIR}/bitrate_allocator.h"
 )
-set_target_properties("${WEBRTC_COMPONENT_PREFIX}bitrate_allocator" PROPERTIES FOLDER "call")
+set_target_properties("${WEBRTC_COMPONENT_PREFIX}bitrate_allocator" PROPERTIES FOLDER ${WEBRTC_CALL_IDE_FOLDER})
 
 add_library("${WEBRTC_COMPONENT_PREFIX}simulated_network" OBJECT
     "${WEBRTC_CALL_DIR}/simulated_network.cc"
     "${WEBRTC_CALL_DIR}/simulated_network.h"
 )
-set_target_properties("${WEBRTC_COMPONENT_PREFIX}simulated_network" PROPERTIES FOLDER "call")
+set_target_properties("${WEBRTC_COMPONENT_PREFIX}simulated_network" PROPERTIES FOLDER ${WEBRTC_CALL_IDE_FOLDER})
 
 add_library("${WEBRTC_COMPONENT_PREFIX}video_stream_api" OBJECT
     "${WEBRTC_CALL_DIR}/video_receive_stream.cc"
@@ -71,7 +72,7 @@ add_library("${WEBRTC_COMPONENT_PREFIX}video_stream_api" OBJECT
     "${WEBRTC_CALL_DIR}/video_send_stream.cc"
     "${WEBRTC_CALL_DIR}/video_send_stream.h"
 )
-set_target_properties("${WEBRTC_COMPONENT_PREFIX}video_stream_api" PROPERTIES FOLDER "call")
+set_target_properties("${WEBRTC_COMPONENT_PREFIX}video_stream_api" PROPERTIES FOLDER ${WEBRTC_CALL_IDE_FOLDER})
 
 add_library("${WEBRTC_COMPONENT_PREFIX}call" OBJECT
     "${WEBRTC_CALL_DIR}/call.cc"
@@ -84,7 +85,7 @@ add_library("${WEBRTC_COMPONENT_PREFIX}call" OBJECT
     "${WEBRTC_CALL_DIR}/receive_time_calculator.cc"
     "${WEBRTC_CALL_DIR}/receive_time_calculator.h"
 )
-set_target_properties("${WEBRTC_COMPONENT_PREFIX}call" PROPERTIES FOLDER "call")
+set_target_properties("${WEBRTC_COMPONENT_PREFIX}call" PROPERTIES FOLDER ${WEBRTC_CALL_IDE_FOLDER})
 
 target_link_libraries("${WEBRTC_COMPONENT_PREFIX}call"
     "${WEBRTC_COMPONENT_PREFIX}call_interfaces"

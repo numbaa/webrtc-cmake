@@ -1,12 +1,13 @@
 
 set(WEBRTC_API_DIR "${WEBRTC_SOURCE_DIR}/api")
+set(WEBRTC_API_IDE_FOLDER "webrtc/api")
 
 add_library("create_peerconnection_factory" OBJECT
     "${WEBRTC_API_DIR}/create_peerconnection_factory.cc"
     "${WEBRTC_API_DIR}/create_peerconnection_factory.h"
 )
 
-set_target_properties("create_peerconnection_factory" PROPERTIES FOLDER "api")
+set_target_properties("create_peerconnection_factory" PROPERTIES FOLDER ${WEBRTC_API_IDE_FOLDER})
 
 
 add_library("libjingle_peerconnection_api" OBJECT
@@ -48,19 +49,19 @@ add_library("libjingle_peerconnection_api" OBJECT
     "${WEBRTC_API_DIR}/uma_metrics.h"
     "${WEBRTC_API_DIR}/video_track_source_proxy.h"
 )
-set_target_properties("libjingle_peerconnection_api" PROPERTIES FOLDER "api")
+set_target_properties("libjingle_peerconnection_api" PROPERTIES FOLDER ${WEBRTC_API_IDE_FOLDER})
 
 add_library("rtc_error" OBJECT
     "${WEBRTC_API_DIR}/rtc_error.cc"
     "${WEBRTC_API_DIR}/rtc_error.h"
 )
-set_target_properties("rtc_error" PROPERTIES FOLDER "api")
+set_target_properties("rtc_error" PROPERTIES FOLDER ${WEBRTC_API_IDE_FOLDER})
 
 add_library("transport_api" OBJECT
     "${WEBRTC_API_DIR}/call/transport.cc"
     "${WEBRTC_API_DIR}/call/transport.h"
 )
-set_target_properties("transport_api" PROPERTIES FOLDER "api")
+set_target_properties("transport_api" PROPERTIES FOLDER ${WEBRTC_API_IDE_FOLDER})
 
 add_library("crypto" OBJECT
     "${WEBRTC_API_DIR}/crypto/crypto_options.cc"
@@ -68,7 +69,7 @@ add_library("crypto" OBJECT
     "${WEBRTC_API_DIR}/crypto/frame_encryptor_interface.h"
     "${WEBRTC_API_DIR}/crypto/frame_decryptor_interface.h"
 )
-set_target_properties("crypto" PROPERTIES FOLDER "api")
+set_target_properties("crypto" PROPERTIES FOLDER ${WEBRTC_API_IDE_FOLDER})
 
 add_library("rtc_event_log_factory" OBJECT
     "${WEBRTC_API_DIR}/rtc_event_log/rtc_event.cc"
@@ -80,7 +81,7 @@ add_library("rtc_event_log_factory" OBJECT
     "${WEBRTC_API_DIR}/rtc_event_log/rtc_event_log_factory.h"
 
 )
-set_target_properties("rtc_event_log_factory" PROPERTIES FOLDER "api")
+set_target_properties("rtc_event_log_factory" PROPERTIES FOLDER ${WEBRTC_API_IDE_FOLDER})
 
 add_library("task_queue" OBJECT
     "${WEBRTC_API_DIR}/task_queue/queued_task.h"
@@ -88,16 +89,16 @@ add_library("task_queue" OBJECT
     "${WEBRTC_API_DIR}/task_queue/task_queue_factory.h"
     "${WEBRTC_API_DIR}/task_queue/task_queue_base.cc"
 )
-set_target_properties("task_queue" PROPERTIES FOLDER "api")
+set_target_properties("task_queue" PROPERTIES FOLDER ${WEBRTC_API_IDE_FOLDER})
 
 add_library("default_task_queue_factory" OBJECT
     "${WEBRTC_API_DIR}/task_queue/default_task_queue_factory.h"
     "${WEBRTC_API_DIR}/task_queue/default_task_queue_factory_stdlib.cc"
 )
-set_target_properties("default_task_queue_factory" PROPERTIES FOLDER "api")
+set_target_properties("default_task_queue_factory" PROPERTIES FOLDER ${WEBRTC_API_IDE_FOLDER})
 
 add_custom_target("api")
-set_target_properties("api" PROPERTIES FOLDER "api")
+set_target_properties("api" PROPERTIES FOLDER ${WEBRTC_API_IDE_FOLDER})
 add_dependencies("api"
     "default_task_queue_factory"
     "task_queue"
