@@ -1,13 +1,17 @@
 
 set(WEBRTC_API_DIR "${WEBRTC_SOURCE_DIR}/api")
 set(WEBRTC_API_IDE_FOLDER "webrtc/api")
-
 add_library("create_peerconnection_factory" OBJECT
     "${WEBRTC_API_DIR}/create_peerconnection_factory.cc"
     "${WEBRTC_API_DIR}/create_peerconnection_factory.h"
 )
-
+target_include_directories("create_peerconnection_factory" PRIVATE ${WEBRTC_SOURCE_DIR})
 set_target_properties("create_peerconnection_factory" PROPERTIES FOLDER ${WEBRTC_API_IDE_FOLDER})
+target_link_libraries("create_peerconnection_factory"
+    PRIVATE
+        "libjingle_peerconnection_api"
+        "absl::optional"
+)
 
 
 add_library("libjingle_peerconnection_api" OBJECT
@@ -49,12 +53,18 @@ add_library("libjingle_peerconnection_api" OBJECT
     "${WEBRTC_API_DIR}/uma_metrics.h"
     "${WEBRTC_API_DIR}/video_track_source_proxy.h"
 )
+target_include_directories("libjingle_peerconnection_api" PRIVATE ${WEBRTC_SOURCE_DIR})
+target_link_libraries("libjingle_peerconnection_api"
+    PRIVATE
+        "absl::optional"
+)
 set_target_properties("libjingle_peerconnection_api" PROPERTIES FOLDER ${WEBRTC_API_IDE_FOLDER})
 
 add_library("rtc_error" OBJECT
     "${WEBRTC_API_DIR}/rtc_error.cc"
     "${WEBRTC_API_DIR}/rtc_error.h"
 )
+target_include_directories("rtc_error" PRIVATE ${WEBRTC_SOURCE_DIR})
 set_target_properties("rtc_error" PROPERTIES FOLDER ${WEBRTC_API_IDE_FOLDER})
 
 add_library("transport_api" OBJECT
