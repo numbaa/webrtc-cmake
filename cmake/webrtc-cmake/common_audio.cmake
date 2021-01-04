@@ -49,6 +49,16 @@ add_library("${WEBRTC_COMPONENT_PREFIX}common_audio_c" OBJECT
     "${WEBRTC_COMMON_AUDIO_DIR}/vad/vad_sp.c"
     "${WEBRTC_COMMON_AUDIO_DIR}/vad/vad_sp.h"
     "${WEBRTC_COMMON_AUDIO_DIR}/vad/webrtc_vad.c"
+    #common_audio_cc
+    "${WEBRTC_COMMON_AUDIO_DIR}/signal_processing/dot_product_with_scale.cc"
+    "${WEBRTC_COMMON_AUDIO_DIR}/signal_processing/dot_product_with_scale.h"
+)
+target_link_libraries("${WEBRTC_COMPONENT_PREFIX}common_audio_c"
+    "absl::optional"
+)
+target_include_directories("${WEBRTC_COMPONENT_PREFIX}common_audio_c"
+    PRIVATE
+        ${WEBRTC_SOURCE_DIR}
 )
 set_target_properties("${WEBRTC_COMPONENT_PREFIX}common_audio_c" PROPERTIES FOLDER ${WEBRTC_COMMON_AUDIO_IDE_FOLDER})
 
@@ -82,9 +92,14 @@ add_library("${WEBRTC_COMPONENT_PREFIX}common_audio" OBJECT
     "${WEBRTC_COMMON_AUDIO_DIR}/window_generator.h"
 )
 set_target_properties("${WEBRTC_COMPONENT_PREFIX}common_audio" PROPERTIES FOLDER ${WEBRTC_COMMON_AUDIO_IDE_FOLDER})
+target_include_directories("${WEBRTC_COMPONENT_PREFIX}common_audio"
+    PRIVATE
+        ${WEBRTC_SOURCE_DIR}
+)
 
 target_link_libraries("${WEBRTC_COMPONENT_PREFIX}common_audio"
     "${WEBRTC_COMPONENT_PREFIX}_common_audio_c"
+    "absl::optional"
 )
 
 #add_library(webrtc::common_audio ALIAS "${WEBRTC_COMPONENT_PREFIX}common_audio")

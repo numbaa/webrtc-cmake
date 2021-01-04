@@ -63,5 +63,22 @@ add_library(${USRSCTP} STATIC
     "${USRSCTP_ROOT}/usrsctplib/usrsctplib/user_uma.h"
     "${USRSCTP_ROOT}/usrsctplib/usrsctplib/usrsctp.h"
 )
+target_include_directories(${USRSCTP}
+    PUBLIC
+        "${USRSCTP_ROOT}/usrsctplib/usrsctplib"
+)
+target_compile_definitions(${USRSCTP}
+    PRIVATE
+        SCTP_PROCESS_LEVEL_LOCKS
+        SCTP_SIMPLE_ALLOCATOR
+        SCTP_USE_OPENSSL_SHA1
+        __Userspace__
+        __Userspace_os_Windows
+)
+target_compile_options(${USRSCTP}
+    PRIVATE
+        "-UINET"
+        "-UINET6"
+)
 set_target_properties(${USRSCTP} PROPERTIES FOLDER ${USRSCTP_ROOT})
 

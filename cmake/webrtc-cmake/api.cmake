@@ -93,6 +93,22 @@ add_library("rtc_event_log_factory" OBJECT
 )
 set_target_properties("rtc_event_log_factory" PROPERTIES FOLDER ${WEBRTC_API_IDE_FOLDER})
 
+add_library("field_tral_base_config"
+    "${WEBRTC_API_DIR}/transport/field_trial_based_config.cc"
+    "${WEBRTC_API_DIR}/transport/field_trial_based_config.h"
+)
+target_include_directories("field_tral_base_config"
+    PRIVATE
+        "${WEBRTC_SOURCE_DIR}"
+    PUBLIC
+        "${WEBRTC_API_DIR}/transport"
+)
+target_link_libraries("field_tral_base_config"
+    absl::optional
+)
+set_target_properties("field_tral_base_config" PROPERTIES FOLDER ${WEBRTC_API_IDE_FOLDER})
+
+
 add_library("task_queue" OBJECT
     "${WEBRTC_API_DIR}/task_queue/queued_task.h"
     "${WEBRTC_API_DIR}/task_queue/task_queue_base.h"

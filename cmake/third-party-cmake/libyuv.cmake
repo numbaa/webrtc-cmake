@@ -61,6 +61,7 @@ add_library(${LIB_YUV} STATIC
 set_target_properties(${LIB_YUV} PROPERTIES FOLDER ${LIB_YUV_ROOT})
 
 target_include_directories(${LIB_YUV}
-   PUBLIC
-      "${LIB_YUV_ROOT}/include"
+    PUBLIC
+       "${LIB_YUV_ROOT}/include"
+       "."
 )

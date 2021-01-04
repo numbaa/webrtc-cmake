@@ -29,6 +29,15 @@ add_library("${WEBRTC_COMPONENT_PREFIX}common_video" OBJECT
     "${WEBRTC_COMMON_VIDEO_DIR}/video_render_frames.cc"
     "${WEBRTC_COMMON_VIDEO_DIR}/video_render_frames.h"
 )
+target_link_libraries("${WEBRTC_COMPONENT_PREFIX}common_video"
+    "absl::optional"
+    "yuv"
+)
+target_include_directories("${WEBRTC_COMPONENT_PREFIX}common_video"
+    PRIVATE
+        ${WEBRTC_SOURCE_DIR}
+        #"./"
+)
 set_target_properties("${WEBRTC_COMPONENT_PREFIX}common_video" PROPERTIES FOLDER ${WEBRTC_COMMON_VIDEO_IDE_FOLDER})
 
 #add_library(webrtc::common_video ALIAS "${WEBRTC_COMPONENT_PREFIX}common_video")
