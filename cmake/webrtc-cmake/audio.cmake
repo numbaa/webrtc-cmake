@@ -26,7 +26,11 @@ add_library("${WEBRTC_COMPONENT_PREFIX}audio" OBJECT
     "${WEBRTC_AUDIO_DIR}/remix_resample.cc"
     "${WEBRTC_AUDIO_DIR}/remix_resample.h"
 )
-
+target_include_directories("${WEBRTC_COMPONENT_PREFIX}audio" PRIVATE ${WEBRTC_SOURCE_DIR})
+target_link_libraries("${WEBRTC_COMPONENT_PREFIX}audio"
+    PRIVATE
+        "absl::optional"
+)
 set_target_properties("${WEBRTC_COMPONENT_PREFIX}audio" PROPERTIES FOLDER ${WEBRTC_AUDIO_IDE_FOLDER})
 
 
