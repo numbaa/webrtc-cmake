@@ -73,6 +73,12 @@ add_library("${WEBRTC_COMPONENT_PREFIX}p2p" OBJECT
     "${WEBRTC_P2P_DIR}/stunprober/stun_prober.h"
 )
 set_target_properties("${WEBRTC_COMPONENT_PREFIX}p2p" PROPERTIES FOLDER ${WEBRTC_P2P_IDE_FOLDER})
-
+target_link_libraries("${WEBRTC_COMPONENT_PREFIX}p2p"
+    "absl::optional"
+)
+target_include_directories("${WEBRTC_COMPONENT_PREFIX}p2p"
+    PRIVATE
+        ${WEBRTC_SOURCE_DIR}
+)
 
 #add_library(webrtc::p2p ALIAS "${WEBRTC_COMPONENT_PREFIX}p2p")

@@ -165,6 +165,12 @@ add_library("${WEBRTC_COMPONENT_PREFIX}pc" OBJECT
     "${WEBRTC_PC_DIR}/dtmf_sender.cc"
     "${WEBRTC_PC_DIR}/dtmf_sender.h"
 )
-set_target_properties("${WEBRTC_COMPONENT_PREFIX}pc" PROPERTIES FOLDER ${WEBRTC_P2P_IDE_FOLDER})
-
+set_target_properties("${WEBRTC_COMPONENT_PREFIX}pc" PROPERTIES FOLDER ${WEBRTC_PC_IDE_FOLDER})
+target_link_libraries("${WEBRTC_COMPONENT_PREFIX}pc"
+    "absl::optional"
+)
+target_include_directories("${WEBRTC_COMPONENT_PREFIX}pc"
+    PRIVATE
+        ${WEBRTC_SOURCE_DIR}
+)
 #add_library(webrtc::pc ALIAS "${WEBRTC_COMPONENT_PREFIX}pc")

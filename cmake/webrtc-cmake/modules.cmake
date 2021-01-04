@@ -1,6 +1,6 @@
 set(WEBRTC_MODULES_DIR "${WEBRTC_SOURCE_DIR}/modules")
 set(WEBRTC_MODULES_IDE_FOLDER "webrtc/modules")
-
+add_definitions(-DWEBRTC_APM_DEBUG_DUMP=0)
 add_library("${WEBRTC_COMPONENT_PREFIX}modules_audio_coding" OBJECT
     #audio_coding
     "${WEBRTC_MODULES_DIR}/audio_coding/acm2/acm_receiver.cc"
@@ -87,6 +87,13 @@ add_library("${WEBRTC_COMPONENT_PREFIX}modules_audio_coding" OBJECT
     "${WEBRTC_MODULES_DIR}/audio_coding/codecs/cng/webrtc_cng.cc"
     "${WEBRTC_MODULES_DIR}/audio_coding/codecs/cng/webrtc_cng.h"
 )
+target_include_directories("${WEBRTC_COMPONENT_PREFIX}modules_audio_coding"
+    PRIVATE
+        ${WEBRTC_SOURCE_DIR}
+)
+target_link_libraries("${WEBRTC_COMPONENT_PREFIX}modules_audio_coding"
+    "absl::optional"
+)
 set_target_properties("${WEBRTC_COMPONENT_PREFIX}modules_audio_coding" PROPERTIES FOLDER ${WEBRTC_MODULES_IDE_FOLDER})
 
 
@@ -107,6 +114,13 @@ add_library("${WEBRTC_COMPONENT_PREFIX}modules_audio_device" OBJECT
     "${WEBRTC_MODULES_DIR}/audio_device/audio_device_generic.cc"
     "${WEBRTC_MODULES_DIR}/audio_device/audio_device_generic.h"
 )
+target_include_directories("${WEBRTC_COMPONENT_PREFIX}modules_audio_device"
+    PRIVATE
+        ${WEBRTC_SOURCE_DIR}
+)
+target_link_libraries("${WEBRTC_COMPONENT_PREFIX}modules_audio_device"
+    "absl::optional"
+)
 set_target_properties("${WEBRTC_COMPONENT_PREFIX}modules_audio_device" PROPERTIES FOLDER ${WEBRTC_MODULES_IDE_FOLDER})
 
 
@@ -122,6 +136,13 @@ add_library("${WEBRTC_COMPONENT_PREFIX}modules_audio_mixer" OBJECT
     #audio_frame_manipulator
     "${WEBRTC_MODULES_DIR}/audio_mixer/audio_frame_manipulator.cc"
     "${WEBRTC_MODULES_DIR}/audio_mixer/audio_frame_manipulator.h"
+)
+target_include_directories("${WEBRTC_COMPONENT_PREFIX}modules_audio_mixer"
+    PRIVATE
+        ${WEBRTC_SOURCE_DIR}
+)
+target_link_libraries("${WEBRTC_COMPONENT_PREFIX}modules_audio_mixer"
+    "absl::optional"
 )
 set_target_properties("${WEBRTC_COMPONENT_PREFIX}modules_audio_mixer" PROPERTIES FOLDER ${WEBRTC_MODULES_IDE_FOLDER})
 
@@ -191,11 +212,25 @@ add_library("${WEBRTC_COMPONENT_PREFIX}modules_audio_processing" OBJECT
     "${WEBRTC_MODULES_DIR}/audio_processing/voice_detection.cc"
     "${WEBRTC_MODULES_DIR}/audio_processing/voice_detection.h"
 )
+target_include_directories("${WEBRTC_COMPONENT_PREFIX}modules_audio_processing"
+    PRIVATE
+        ${WEBRTC_SOURCE_DIR}
+)
+target_link_libraries("${WEBRTC_COMPONENT_PREFIX}modules_audio_processing"
+    "absl::optional"
+)
 set_target_properties("${WEBRTC_COMPONENT_PREFIX}modules_audio_processing" PROPERTIES FOLDER ${WEBRTC_MODULES_IDE_FOLDER})
 
 add_library("${WEBRTC_COMPONENT_PREFIX}modules_congestion_controller" OBJECT
     "${WEBRTC_MODULES_DIR}/congestion_controller/include/receive_side_congestion_controller.h"
     "${WEBRTC_MODULES_DIR}/congestion_controller/receive_side_congestion_controller.cc"
+)
+target_include_directories("${WEBRTC_COMPONENT_PREFIX}modules_congestion_controller"
+    PRIVATE
+        ${WEBRTC_SOURCE_DIR}
+)
+target_link_libraries("${WEBRTC_COMPONENT_PREFIX}modules_congestion_controller"
+    "absl::optional"
 )
 set_target_properties("${WEBRTC_COMPONENT_PREFIX}modules_congestion_controller" PROPERTIES FOLDER ${WEBRTC_MODULES_IDE_FOLDER})
 
@@ -216,6 +251,13 @@ add_library("${WEBRTC_COMPONENT_PREFIX}modules_pacing" OBJECT
     #interval_budget
     "${WEBRTC_MODULES_DIR}/pacing/interval_budget.cc"
     "${WEBRTC_MODULES_DIR}/pacing/interval_budget.h"
+)
+target_include_directories("${WEBRTC_COMPONENT_PREFIX}modules_pacing"
+    PRIVATE
+        ${WEBRTC_SOURCE_DIR}
+)
+target_link_libraries("${WEBRTC_COMPONENT_PREFIX}modules_pacing"
+    "absl::optional"
 )
 set_target_properties("${WEBRTC_COMPONENT_PREFIX}modules_pacing" PROPERTIES FOLDER ${WEBRTC_MODULES_IDE_FOLDER})
 
@@ -238,6 +280,13 @@ add_library("${WEBRTC_COMPONENT_PREFIX}modules_remote_bitrate_estimator" OBJECT
     "${WEBRTC_MODULES_DIR}/remote_bitrate_estimator/remote_estimator_proxy.cc"
     "${WEBRTC_MODULES_DIR}/remote_bitrate_estimator/remote_estimator_proxy.h"
     "${WEBRTC_MODULES_DIR}/remote_bitrate_estimator/test/bwe_test_logging.h"
+)
+target_include_directories("${WEBRTC_COMPONENT_PREFIX}modules_remote_bitrate_estimator"
+    PRIVATE
+        ${WEBRTC_SOURCE_DIR}
+)
+target_link_libraries("${WEBRTC_COMPONENT_PREFIX}modules_remote_bitrate_estimator"
+    "absl::optional"
 )
 set_target_properties("${WEBRTC_COMPONENT_PREFIX}modules_remote_bitrate_estimator" PROPERTIES FOLDER ${WEBRTC_MODULES_IDE_FOLDER})
 
@@ -396,12 +445,26 @@ add_library("${WEBRTC_COMPONENT_PREFIX}modules_rtp_rtcp" OBJECT
     "${WEBRTC_MODULES_DIR}/rtp_rtcp/source/rtp_video_header.cc"
     "${WEBRTC_MODULES_DIR}/rtp_rtcp/source/rtp_video_header.h"
 )
+target_include_directories("${WEBRTC_COMPONENT_PREFIX}modules_rtp_rtcp"
+    PRIVATE
+        ${WEBRTC_SOURCE_DIR}
+)
+target_link_libraries("${WEBRTC_COMPONENT_PREFIX}modules_rtp_rtcp"
+    "absl::optional"
+)
 set_target_properties("${WEBRTC_COMPONENT_PREFIX}modules_rtp_rtcp" PROPERTIES FOLDER ${WEBRTC_MODULES_IDE_FOLDER})
 
 add_library("${WEBRTC_COMPONENT_PREFIX}modules_utility" OBJECT
     "${WEBRTC_MODULES_DIR}/utility/include/process_thread.h"
     "${WEBRTC_MODULES_DIR}/utility/source/process_thread_impl.cc"
     "${WEBRTC_MODULES_DIR}/utility/source/process_thread_impl.h"
+)
+target_include_directories("${WEBRTC_COMPONENT_PREFIX}modules_utility"
+    PRIVATE
+        ${WEBRTC_SOURCE_DIR}
+)
+target_link_libraries("${WEBRTC_COMPONENT_PREFIX}modules_utility"
+    "absl::optional"
 )
 set_target_properties("${WEBRTC_COMPONENT_PREFIX}modules_utility" PROPERTIES FOLDER ${WEBRTC_MODULES_IDE_FOLDER})
 
@@ -488,6 +551,13 @@ add_library("${WEBRTC_COMPONENT_PREFIX}modules_video_coding" OBJECT
     "${WEBRTC_MODULES_DIR}/video_coding/codecs/vp9/svc_config.h"
     "${WEBRTC_MODULES_DIR}/video_coding/codecs/vp9/svc_rate_allocator.h"
 )
+target_include_directories("${WEBRTC_COMPONENT_PREFIX}modules_video_coding"
+    PRIVATE
+        ${WEBRTC_SOURCE_DIR}
+)
+target_link_libraries("${WEBRTC_COMPONENT_PREFIX}modules_video_coding"
+    "absl::optional"
+)
 set_target_properties("${WEBRTC_COMPONENT_PREFIX}modules_video_coding" PROPERTIES FOLDER ${WEBRTC_MODULES_IDE_FOLDER})
 
 add_library("${WEBRTC_COMPONENT_PREFIX}modules_video_processing" OBJECT
@@ -502,6 +572,13 @@ add_library("${WEBRTC_COMPONENT_PREFIX}modules_video_processing" OBJECT
     "${WEBRTC_MODULES_DIR}/video_processing/video_denoiser.h"
     #denoiser_filter
     "${WEBRTC_MODULES_DIR}/video_processing/util/denoiser_filter.h"
+)
+target_include_directories("${WEBRTC_COMPONENT_PREFIX}modules_video_processing"
+    PRIVATE
+        ${WEBRTC_SOURCE_DIR}
+)
+target_link_libraries("${WEBRTC_COMPONENT_PREFIX}modules_video_processing"
+    "absl::optional"
 )
 set_target_properties("${WEBRTC_COMPONENT_PREFIX}modules_video_processing" PROPERTIES FOLDER ${WEBRTC_MODULES_IDE_FOLDER})
 
