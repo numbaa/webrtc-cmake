@@ -216,6 +216,8 @@ add_library("${WEBRTC_COMPONENT_PREFIX}rtc_base" OBJECT
 target_link_libraries("${WEBRTC_COMPONENT_PREFIX}rtc_base"
     PRIVATE
         "absl::optional"
+        "OpenSSL::SSL"
+        "OpenSSL::Crypto"
 )
 target_include_directories("${WEBRTC_COMPONENT_PREFIX}rtc_base" PRIVATE ${WEBRTC_SOURCE_DIR})
 set_target_properties("${WEBRTC_COMPONENT_PREFIX}rtc_base" PROPERTIES FOLDER ${WEBRTC_RTC_BASE_IDE_FOLDER})
