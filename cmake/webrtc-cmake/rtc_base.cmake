@@ -1,8 +1,109 @@
 set(WEBRTC_RTC_BASE_DIR "${WEBRTC_SOURCE_DIR}/rtc_base")
 set(WEBRTC_RTC_BASE_IDE_FOLDER "webrtc/rtc_base")
 
-add_library("${WEBRTC_COMPONENT_PREFIX}rtc_base" OBJECT
+add_library("${WEBRTC_COMPONENT_PREFIX}rtc_base_checks" OBJECT
+    "${WEBRTC_RTC_BASE_DIR}/checks.cc"
+    "${WEBRTC_RTC_BASE_DIR}/checks.h"
+)
+
+add_library("${WEBRTC_COMPONENT_PREFIX}rtc_base_rtc_task_queue" OBJECT
+    "${WEBRTC_RTC_BASE_DIR}/task_queue.cc"
+    "${WEBRTC_RTC_BASE_DIR}/task_queue.h"
+)
+
+add_library("${WEBRTC_COMPONENT_PREFIX}rtc_base_stringutils" OBJECT
+    "${WEBRTC_RTC_BASE_DIR}/string_encode.cc"
+    "${WEBRTC_RTC_BASE_DIR}/string_encode.h"
+    "${WEBRTC_RTC_BASE_DIR}/string_to_number.cc"
+    "${WEBRTC_RTC_BASE_DIR}/string_to_number.h"
+    "${WEBRTC_RTC_BASE_DIR}/string_utils.cc"
+    "${WEBRTC_RTC_BASE_DIR}/string_utils.h"
+    "${WEBRTC_RTC_BASE_DIR}/strings/string_builder.cc"
+    "${WEBRTC_RTC_BASE_DIR}/strings/string_builder.h"
+    "${WEBRTC_RTC_BASE_DIR}/strings/string_format.cc"
+    "${WEBRTC_RTC_BASE_DIR}/strings/string_format.h"
+)
+
+add_library("${WEBRTC_COMPONENT_PREFIX}rtc_base_platform_thread_types" OBJECT
+    "${WEBRTC_RTC_BASE_DIR}/platform_thread_types.cc"
+    "${WEBRTC_RTC_BASE_DIR}/platform_thread_types.h"
+)
+
+add_library("${WEBRTC_COMPONENT_PREFIX}rtc_base_criticalsection" OBJECT
+    #"
+    "${WEBRTC_RTC_BASE_DIR}/deprecated/recursive_critical_section.cc"
+    "${WEBRTC_RTC_BASE_DIR}/deprecated/recursive_critical_section.h"
+)
+
+add_library("${WEBRTC_COMPONENT_PREFIX}rtc_base_timeutils" OBJECT
+    #"
+    "${WEBRTC_RTC_BASE_DIR}/time_utils.cc"
+    "${WEBRTC_RTC_BASE_DIR}/time_utils.h"
+)
+
+add_library("${WEBRTC_COMPONENT_PREFIX}rtc_base_platform_thread" OBJECT
+    #"
+    "${WEBRTC_RTC_BASE_DIR}/platform_thread.cc"
+    "${WEBRTC_RTC_BASE_DIR}/platform_thread.h"
+)
+
+add_library("${WEBRTC_COMPONENT_PREFIX}rtc_base_logging" OBJECT
+    #"
+    "${WEBRTC_RTC_BASE_DIR}/logging.cc"
+    "${WEBRTC_RTC_BASE_DIR}/logging.h"
+)
+
+add_library("${WEBRTC_COMPONENT_PREFIX}rtc_base_rtc_base_approved" OBJECT
     #rtc_base_approved
+    "${WEBRTC_RTC_BASE_DIR}/bind.h"
+    "${WEBRTC_RTC_BASE_DIR}/bit_buffer.cc"
+    "${WEBRTC_RTC_BASE_DIR}/bit_buffer.h"
+    "${WEBRTC_RTC_BASE_DIR}/buffer.h"
+    "${WEBRTC_RTC_BASE_DIR}/buffer_queue.cc"
+    "${WEBRTC_RTC_BASE_DIR}/buffer_queue.h"
+    "${WEBRTC_RTC_BASE_DIR}/byte_buffer.cc"
+    "${WEBRTC_RTC_BASE_DIR}/byte_buffer.h"
+    "${WEBRTC_RTC_BASE_DIR}/byte_order.h"
+    "${WEBRTC_RTC_BASE_DIR}/copy_on_write_buffer.cc"
+    "${WEBRTC_RTC_BASE_DIR}/copy_on_write_buffer.h"
+    "${WEBRTC_RTC_BASE_DIR}/event_tracer.cc"
+    "${WEBRTC_RTC_BASE_DIR}/event_tracer.h"
+    "${WEBRTC_RTC_BASE_DIR}/location.cc"
+    "${WEBRTC_RTC_BASE_DIR}/location.h"
+    "${WEBRTC_RTC_BASE_DIR}/message_buffer_reader.h"
+    "${WEBRTC_RTC_BASE_DIR}/numerics/histogram_percentile_counter.cc"
+    "${WEBRTC_RTC_BASE_DIR}/numerics/histogram_percentile_counter.h"
+    "${WEBRTC_RTC_BASE_DIR}/numerics/mod_ops.h"
+    "${WEBRTC_RTC_BASE_DIR}/numerics/moving_max_counter.h"
+    "${WEBRTC_RTC_BASE_DIR}/numerics/sample_counter.cc"
+    "${WEBRTC_RTC_BASE_DIR}/numerics/sample_counter.h"
+    "${WEBRTC_RTC_BASE_DIR}/one_time_event.h"
+    "${WEBRTC_RTC_BASE_DIR}/race_checker.cc"
+    "${WEBRTC_RTC_BASE_DIR}/race_checker.h"
+    "${WEBRTC_RTC_BASE_DIR}/random.cc"
+    "${WEBRTC_RTC_BASE_DIR}/random.h"
+    "${WEBRTC_RTC_BASE_DIR}/rate_statistics.cc"
+    "${WEBRTC_RTC_BASE_DIR}/rate_statistics.h"
+    "${WEBRTC_RTC_BASE_DIR}/rate_tracker.cc"
+    "${WEBRTC_RTC_BASE_DIR}/rate_tracker.h"
+    "${WEBRTC_RTC_BASE_DIR}/swap_queue.h"
+    "${WEBRTC_RTC_BASE_DIR}/timestamp_aligner.cc"
+    "${WEBRTC_RTC_BASE_DIR}/timestamp_aligner.h"
+    "${WEBRTC_RTC_BASE_DIR}/trace_event.h"
+    "${WEBRTC_RTC_BASE_DIR}/zero_memory.cc"
+    "${WEBRTC_RTC_BASE_DIR}/zero_memory.h"
+    #rtc_base_approved if win
+    "${WEBRTC_RTC_BASE_DIR}/win/get_activation_factory.cc"
+    "${WEBRTC_RTC_BASE_DIR}/win/get_activation_factory.h"
+    "${WEBRTC_RTC_BASE_DIR}/win/hstring.cc"
+    "${WEBRTC_RTC_BASE_DIR}/win/hstring.h"
+    "${WEBRTC_RTC_BASE_DIR}/win/scoped_com_initializer.cc"
+    "${WEBRTC_RTC_BASE_DIR}/win/scoped_com_initializer.h"
+    "${WEBRTC_RTC_BASE_DIR}/win/windows_version.cc"
+    "${WEBRTC_RTC_BASE_DIR}/win/windows_version.h"
+)
+
+add_library("${WEBRTC_COMPONENT_PREFIX}rtc_base" OBJECT
     "${WEBRTC_RTC_BASE_DIR}/async_invoker.cc"
     "${WEBRTC_RTC_BASE_DIR}/async_invoker.h"
     "${WEBRTC_RTC_BASE_DIR}/async_invoker_inl.h"
@@ -108,25 +209,9 @@ add_library("${WEBRTC_COMPONENT_PREFIX}rtc_base" OBJECT
     "${WEBRTC_RTC_BASE_DIR}/unique_id_generator.cc"
     "${WEBRTC_RTC_BASE_DIR}/unique_id_generator.h"
 
-    #checks"
-    "${WEBRTC_RTC_BASE_DIR}/checks.cc"
-    "${WEBRTC_RTC_BASE_DIR}/checks.h"
+
     #deprecation"
     "${WEBRTC_RTC_BASE_DIR}/deprecation.h"
-    #rtc_task_queue"
-    "${WEBRTC_RTC_BASE_DIR}/task_queue.cc"
-    "${WEBRTC_RTC_BASE_DIR}/task_queue.h"
-    #stringutils"
-    "${WEBRTC_RTC_BASE_DIR}/string_encode.cc"
-    "${WEBRTC_RTC_BASE_DIR}/string_encode.h"
-    "${WEBRTC_RTC_BASE_DIR}/string_to_number.cc"
-    "${WEBRTC_RTC_BASE_DIR}/string_to_number.h"
-    "${WEBRTC_RTC_BASE_DIR}/string_utils.cc"
-    "${WEBRTC_RTC_BASE_DIR}/string_utils.h"
-    "${WEBRTC_RTC_BASE_DIR}/strings/string_builder.cc"
-    "${WEBRTC_RTC_BASE_DIR}/strings/string_builder.h"
-    "${WEBRTC_RTC_BASE_DIR}/strings/string_format.cc"
-    "${WEBRTC_RTC_BASE_DIR}/strings/string_format.h"
     #macromagic
     "${WEBRTC_RTC_BASE_DIR}/arraysize.h"
     "${WEBRTC_RTC_BASE_DIR}/constructor_magic.h"
@@ -138,65 +223,7 @@ add_library("${WEBRTC_COMPONENT_PREFIX}rtc_base" OBJECT
     "${WEBRTC_RTC_BASE_DIR}/numerics/safe_compare.h"
     #type_traits
     "${WEBRTC_RTC_BASE_DIR}/type_traits.h"
-    #rtc_base_approved
-    "${WEBRTC_RTC_BASE_DIR}/bind.h"
-    "${WEBRTC_RTC_BASE_DIR}/bit_buffer.cc"
-    "${WEBRTC_RTC_BASE_DIR}/bit_buffer.h"
-    "${WEBRTC_RTC_BASE_DIR}/buffer.h"
-    "${WEBRTC_RTC_BASE_DIR}/buffer_queue.cc"
-    "${WEBRTC_RTC_BASE_DIR}/buffer_queue.h"
-    "${WEBRTC_RTC_BASE_DIR}/byte_buffer.cc"
-    "${WEBRTC_RTC_BASE_DIR}/byte_buffer.h"
-    "${WEBRTC_RTC_BASE_DIR}/byte_order.h"
-    "${WEBRTC_RTC_BASE_DIR}/copy_on_write_buffer.cc"
-    "${WEBRTC_RTC_BASE_DIR}/copy_on_write_buffer.h"
-    "${WEBRTC_RTC_BASE_DIR}/event_tracer.cc"
-    "${WEBRTC_RTC_BASE_DIR}/event_tracer.h"
-    "${WEBRTC_RTC_BASE_DIR}/location.cc"
-    "${WEBRTC_RTC_BASE_DIR}/location.h"
-    "${WEBRTC_RTC_BASE_DIR}/message_buffer_reader.h"
-    "${WEBRTC_RTC_BASE_DIR}/numerics/histogram_percentile_counter.cc"
-    "${WEBRTC_RTC_BASE_DIR}/numerics/histogram_percentile_counter.h"
-    "${WEBRTC_RTC_BASE_DIR}/numerics/mod_ops.h"
-    "${WEBRTC_RTC_BASE_DIR}/numerics/moving_max_counter.h"
-    "${WEBRTC_RTC_BASE_DIR}/numerics/sample_counter.cc"
-    "${WEBRTC_RTC_BASE_DIR}/numerics/sample_counter.h"
-    "${WEBRTC_RTC_BASE_DIR}/one_time_event.h"
-    "${WEBRTC_RTC_BASE_DIR}/race_checker.cc"
-    "${WEBRTC_RTC_BASE_DIR}/race_checker.h"
-    "${WEBRTC_RTC_BASE_DIR}/random.cc"
-    "${WEBRTC_RTC_BASE_DIR}/random.h"
-    "${WEBRTC_RTC_BASE_DIR}/rate_statistics.cc"
-    "${WEBRTC_RTC_BASE_DIR}/rate_statistics.h"
-    "${WEBRTC_RTC_BASE_DIR}/rate_tracker.cc"
-    "${WEBRTC_RTC_BASE_DIR}/rate_tracker.h"
-    "${WEBRTC_RTC_BASE_DIR}/swap_queue.h"
-    "${WEBRTC_RTC_BASE_DIR}/timestamp_aligner.cc"
-    "${WEBRTC_RTC_BASE_DIR}/timestamp_aligner.h"
-    "${WEBRTC_RTC_BASE_DIR}/trace_event.h"
-    "${WEBRTC_RTC_BASE_DIR}/zero_memory.cc"
-    "${WEBRTC_RTC_BASE_DIR}/zero_memory.h"
-    #rtc_base_approved if win
-    "${WEBRTC_RTC_BASE_DIR}/win/get_activation_factory.cc"
-    "${WEBRTC_RTC_BASE_DIR}/win/get_activation_factory.h"
-    "${WEBRTC_RTC_BASE_DIR}/win/hstring.cc"
-    "${WEBRTC_RTC_BASE_DIR}/win/hstring.h"
-    "${WEBRTC_RTC_BASE_DIR}/win/scoped_com_initializer.cc"
-    "${WEBRTC_RTC_BASE_DIR}/win/scoped_com_initializer.h"
-    "${WEBRTC_RTC_BASE_DIR}/win/windows_version.cc"
-    "${WEBRTC_RTC_BASE_DIR}/win/windows_version.h"
-    #criticalsection"
-    "${WEBRTC_RTC_BASE_DIR}/deprecated/recursive_critical_section.cc"
-    "${WEBRTC_RTC_BASE_DIR}/deprecated/recursive_critical_section.h"
-    #logging"
-    "${WEBRTC_RTC_BASE_DIR}/logging.cc"
-    "${WEBRTC_RTC_BASE_DIR}/logging.h"
-    #platform_thread"
-    "${WEBRTC_RTC_BASE_DIR}/platform_thread.cc"
-    "${WEBRTC_RTC_BASE_DIR}/platform_thread.h"
-    #platform_thread_types"
-    "${WEBRTC_RTC_BASE_DIR}/platform_thread_types.cc"
-    "${WEBRTC_RTC_BASE_DIR}/platform_thread_types.h"
+
     #refcount"
     "${WEBRTC_RTC_BASE_DIR}/ref_count.h"
     "${WEBRTC_RTC_BASE_DIR}/ref_counted_object.h"
@@ -209,12 +236,13 @@ add_library("${WEBRTC_COMPONENT_PREFIX}rtc_base" OBJECT
     "${WEBRTC_RTC_BASE_DIR}/numerics/safe_conversions_impl.h"
     #thread_checker"
     "${WEBRTC_RTC_BASE_DIR}/thread_checker.h"
-    #timeutils"
-    "${WEBRTC_RTC_BASE_DIR}/time_utils.cc"
-    "${WEBRTC_RTC_BASE_DIR}/time_utils.h"
+
 )
 target_link_libraries("${WEBRTC_COMPONENT_PREFIX}rtc_base"
     PRIVATE
+        "${WEBRTC_COMPONENT_PREFIX}rtc_base_checks"
+        "${WEBRTC_COMPONENT_PREFIX}rtc_base_rtc_task_queue"
+        "${WEBRTC_COMPONENT_PREFIX}rtc_base_rtc_stringutils"
         "absl::optional"
         "OpenSSL::SSL"
         "OpenSSL::Crypto"
