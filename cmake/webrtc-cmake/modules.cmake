@@ -579,6 +579,7 @@ target_include_directories("${WEBRTC_COMPONENT_PREFIX}modules_video_processing"
 )
 target_link_libraries("${WEBRTC_COMPONENT_PREFIX}modules_video_processing"
     "absl::optional"
+    "yuv"
 )
 set_target_properties("${WEBRTC_COMPONENT_PREFIX}modules_video_processing" PROPERTIES FOLDER ${WEBRTC_MODULES_IDE_FOLDER})
 

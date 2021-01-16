@@ -168,6 +168,7 @@ add_library("${WEBRTC_COMPONENT_PREFIX}pc" OBJECT
 set_target_properties("${WEBRTC_COMPONENT_PREFIX}pc" PROPERTIES FOLDER ${WEBRTC_PC_IDE_FOLDER})
 target_link_libraries("${WEBRTC_COMPONENT_PREFIX}pc"
     "absl::optional"
+    "usrsctp-static"
 )
 target_include_directories("${WEBRTC_COMPONENT_PREFIX}pc"
     PRIVATE

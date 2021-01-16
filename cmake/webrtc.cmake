@@ -1,6 +1,13 @@
 set(WEBRTC_CMAKE_DIR "${CMAKE_SCRIPTS_DIR}/webrtc-cmake")
 set(WEBRTC_COMPONENT_PREFIX "webrtc_")
 
+include_directories("src")
+
+function(add_webrtc_object object_name ide_folder)
+add_library(${object_name} OBJECT ${ARGN})
+set_target_properties(${object_name} PROPERTIES FOLDER ${ide_folder})
+endfunction(add_webrtc_object)
+
 include("${WEBRTC_CMAKE_DIR}/api.cmake")
 include("${WEBRTC_CMAKE_DIR}/audio.cmake")
 include("${WEBRTC_CMAKE_DIR}/call.cmake")

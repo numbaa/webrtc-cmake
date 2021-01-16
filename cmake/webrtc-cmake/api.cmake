@@ -1,20 +1,20 @@
 
 set(WEBRTC_API_DIR "${WEBRTC_SOURCE_DIR}/api")
 set(WEBRTC_API_IDE_FOLDER "webrtc/api")
-add_library("create_peerconnection_factory" OBJECT
+
+
+
+add_webrtc_object("create_peerconnection_factory" ${WEBRTC_API_IDE_FOLDER}
     "${WEBRTC_API_DIR}/create_peerconnection_factory.cc"
     "${WEBRTC_API_DIR}/create_peerconnection_factory.h"
 )
-target_include_directories("create_peerconnection_factory" PRIVATE ${WEBRTC_SOURCE_DIR})
-set_target_properties("create_peerconnection_factory" PROPERTIES FOLDER ${WEBRTC_API_IDE_FOLDER})
 target_link_libraries("create_peerconnection_factory"
     PRIVATE
         "libjingle_peerconnection_api"
         "absl::optional"
 )
 
-
-add_library("libjingle_peerconnection_api" OBJECT
+add_webrtc_object("libjingle_peerconnection_api" ${WEBRTC_API_IDE_FOLDER}
     "${WEBRTC_API_DIR}/candidate.cc"
     "${WEBRTC_API_DIR}/candidate.h"
     "${WEBRTC_API_DIR}/crypto_params.h"
@@ -53,35 +53,35 @@ add_library("libjingle_peerconnection_api" OBJECT
     "${WEBRTC_API_DIR}/uma_metrics.h"
     "${WEBRTC_API_DIR}/video_track_source_proxy.h"
 )
-target_include_directories("libjingle_peerconnection_api" PRIVATE ${WEBRTC_SOURCE_DIR})
 target_link_libraries("libjingle_peerconnection_api"
     PRIVATE
         "absl::optional"
 )
-set_target_properties("libjingle_peerconnection_api" PROPERTIES FOLDER ${WEBRTC_API_IDE_FOLDER})
 
-add_library("rtc_error" OBJECT
+add_webrtc_object("rtc_error" ${WEBRTC_API_IDE_FOLDER}
     "${WEBRTC_API_DIR}/rtc_error.cc"
     "${WEBRTC_API_DIR}/rtc_error.h"
 )
-target_include_directories("rtc_error" PRIVATE ${WEBRTC_SOURCE_DIR})
-set_target_properties("rtc_error" PROPERTIES FOLDER ${WEBRTC_API_IDE_FOLDER})
+target_link_libraries("rtc_error"
+    absl::optional
+)
 
-add_library("transport_api" OBJECT
+add_webrtc_object("transport_api" ${WEBRTC_API_IDE_FOLDER}
     "${WEBRTC_API_DIR}/call/transport.cc"
     "${WEBRTC_API_DIR}/call/transport.h"
 )
-set_target_properties("transport_api" PROPERTIES FOLDER ${WEBRTC_API_IDE_FOLDER})
 
-add_library("crypto" OBJECT
+add_webrtc_object("crypto" ${WEBRTC_API_IDE_FOLDER}
     "${WEBRTC_API_DIR}/crypto/crypto_options.cc"
     "${WEBRTC_API_DIR}/crypto/crypto_options.h"
     "${WEBRTC_API_DIR}/crypto/frame_encryptor_interface.h"
     "${WEBRTC_API_DIR}/crypto/frame_decryptor_interface.h"
 )
-set_target_properties("crypto" PROPERTIES FOLDER ${WEBRTC_API_IDE_FOLDER})
+target_link_libraries("crypto"
+    absl::optional
+)
 
-add_library("rtc_event_log_factory" OBJECT
+add_webrtc_object("rtc_event_log_factory" ${WEBRTC_API_IDE_FOLDER}
     "${WEBRTC_API_DIR}/rtc_event_log/rtc_event.cc"
     "${WEBRTC_API_DIR}/rtc_event_log/rtc_event.h"
     "${WEBRTC_API_DIR}/rtc_event_log/rtc_event_log.cc"
@@ -89,39 +89,41 @@ add_library("rtc_event_log_factory" OBJECT
     "${WEBRTC_API_DIR}/rtc_event_log/rtc_event_log_factory_interface.h"
     "${WEBRTC_API_DIR}/rtc_event_log/rtc_event_log_factory.cc"
     "${WEBRTC_API_DIR}/rtc_event_log/rtc_event_log_factory.h"
-
 )
-set_target_properties("rtc_event_log_factory" PROPERTIES FOLDER ${WEBRTC_API_IDE_FOLDER})
+target_link_libraries("rtc_event_log_factory"
+    absl::optional
+)
 
-add_library("field_tral_base_config"
+add_webrtc_object("field_tral_base_config" ${WEBRTC_API_IDE_FOLDER}
     "${WEBRTC_API_DIR}/transport/field_trial_based_config.cc"
     "${WEBRTC_API_DIR}/transport/field_trial_based_config.h"
 )
+
 target_include_directories("field_tral_base_config"
-    PRIVATE
-        "${WEBRTC_SOURCE_DIR}"
     PUBLIC
         "${WEBRTC_API_DIR}/transport"
 )
 target_link_libraries("field_tral_base_config"
     absl::optional
 )
-set_target_properties("field_tral_base_config" PROPERTIES FOLDER ${WEBRTC_API_IDE_FOLDER})
 
-
-add_library("task_queue" OBJECT
+add_webrtc_object("task_queue" ${WEBRTC_API_IDE_FOLDER}
     "${WEBRTC_API_DIR}/task_queue/queued_task.h"
     "${WEBRTC_API_DIR}/task_queue/task_queue_base.h"
     "${WEBRTC_API_DIR}/task_queue/task_queue_factory.h"
     "${WEBRTC_API_DIR}/task_queue/task_queue_base.cc"
 )
-set_target_properties("task_queue" PROPERTIES FOLDER ${WEBRTC_API_IDE_FOLDER})
+target_link_libraries("task_queue"
+    absl::optional
+)
 
-add_library("default_task_queue_factory" OBJECT
+add_webrtc_object("default_task_queue_factory" ${WEBRTC_API_IDE_FOLDER}
     "${WEBRTC_API_DIR}/task_queue/default_task_queue_factory.h"
     "${WEBRTC_API_DIR}/task_queue/default_task_queue_factory_stdlib.cc"
 )
-set_target_properties("default_task_queue_factory" PROPERTIES FOLDER ${WEBRTC_API_IDE_FOLDER})
+target_link_libraries("default_task_queue_factory"
+    absl::optional
+)
 
 add_custom_target("api")
 set_target_properties("api" PROPERTIES FOLDER ${WEBRTC_API_IDE_FOLDER})

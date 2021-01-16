@@ -1,17 +1,23 @@
 set(WEBRTC_RTC_BASE_DIR "${WEBRTC_SOURCE_DIR}/rtc_base")
 set(WEBRTC_RTC_BASE_IDE_FOLDER "webrtc/rtc_base")
 
-add_library("${WEBRTC_COMPONENT_PREFIX}rtc_base_checks" OBJECT
+add_webrtc_object("rtc_base_checks" ${WEBRTC_RTC_BASE_IDE_FOLDER}
     "${WEBRTC_RTC_BASE_DIR}/checks.cc"
     "${WEBRTC_RTC_BASE_DIR}/checks.h"
 )
+target_link_libraries("rtc_base_checks"
+    absl::optional
+)
 
-add_library("${WEBRTC_COMPONENT_PREFIX}rtc_base_rtc_task_queue" OBJECT
+add_webrtc_object("rtc_base_rtc_task_queue" ${WEBRTC_RTC_BASE_IDE_FOLDER}
     "${WEBRTC_RTC_BASE_DIR}/task_queue.cc"
     "${WEBRTC_RTC_BASE_DIR}/task_queue.h"
 )
+target_link_libraries("rtc_base_rtc_task_queue"
+    absl::optional
+)
 
-add_library("${WEBRTC_COMPONENT_PREFIX}rtc_base_stringutils" OBJECT
+add_webrtc_object("rtc_base_stringutils" ${WEBRTC_RTC_BASE_IDE_FOLDER}
     "${WEBRTC_RTC_BASE_DIR}/string_encode.cc"
     "${WEBRTC_RTC_BASE_DIR}/string_encode.h"
     "${WEBRTC_RTC_BASE_DIR}/string_to_number.cc"
@@ -23,37 +29,54 @@ add_library("${WEBRTC_COMPONENT_PREFIX}rtc_base_stringutils" OBJECT
     "${WEBRTC_RTC_BASE_DIR}/strings/string_format.cc"
     "${WEBRTC_RTC_BASE_DIR}/strings/string_format.h"
 )
+target_link_libraries("rtc_base_stringutils"
+    absl::optional
+)
 
-add_library("${WEBRTC_COMPONENT_PREFIX}rtc_base_platform_thread_types" OBJECT
+add_webrtc_object("rtc_base_platform_thread_types" ${WEBRTC_RTC_BASE_IDE_FOLDER}
     "${WEBRTC_RTC_BASE_DIR}/platform_thread_types.cc"
     "${WEBRTC_RTC_BASE_DIR}/platform_thread_types.h"
 )
 
-add_library("${WEBRTC_COMPONENT_PREFIX}rtc_base_criticalsection" OBJECT
-    #"
+
+add_webrtc_object("rtc_base_criticalsection" ${WEBRTC_RTC_BASE_IDE_FOLDER}
     "${WEBRTC_RTC_BASE_DIR}/deprecated/recursive_critical_section.cc"
     "${WEBRTC_RTC_BASE_DIR}/deprecated/recursive_critical_section.h"
 )
+target_link_libraries("rtc_base_criticalsection"
+    absl::optional
+)
 
-add_library("${WEBRTC_COMPONENT_PREFIX}rtc_base_timeutils" OBJECT
-    #"
+add_webrtc_object("rtc_base_timeutils" ${WEBRTC_RTC_BASE_IDE_FOLDER}
     "${WEBRTC_RTC_BASE_DIR}/time_utils.cc"
     "${WEBRTC_RTC_BASE_DIR}/time_utils.h"
 )
+target_link_libraries("rtc_base_timeutils"
+    absl::optional
+)
 
-add_library("${WEBRTC_COMPONENT_PREFIX}rtc_base_platform_thread" OBJECT
-    #"
+add_webrtc_object("rtc_base_platform_thread" ${WEBRTC_RTC_BASE_IDE_FOLDER}
     "${WEBRTC_RTC_BASE_DIR}/platform_thread.cc"
     "${WEBRTC_RTC_BASE_DIR}/platform_thread.h"
 )
+target_link_libraries("rtc_base_platform_thread"
+    absl::optional
+)
 
-add_library("${WEBRTC_COMPONENT_PREFIX}rtc_base_logging" OBJECT
-    #"
+add_webrtc_object("rtc_base_logging" ${WEBRTC_RTC_BASE_IDE_FOLDER}
     "${WEBRTC_RTC_BASE_DIR}/logging.cc"
     "${WEBRTC_RTC_BASE_DIR}/logging.h"
 )
+target_link_libraries("rtc_base_logging"
+    absl::optional
+    "rtc_base_checks"
+    "rtc_base_criticalsection"
+    "rtc_base_platform_thread_types"
+    "rtc_base_stringutils"
+    "rtc_base_timeutils"
+)
 
-add_library("${WEBRTC_COMPONENT_PREFIX}rtc_base_rtc_base_approved" OBJECT
+add_webrtc_object("rtc_base_rtc_base_approved" ${WEBRTC_RTC_BASE_IDE_FOLDER}
     #rtc_base_approved
     "${WEBRTC_RTC_BASE_DIR}/bind.h"
     "${WEBRTC_RTC_BASE_DIR}/bit_buffer.cc"
@@ -102,8 +125,11 @@ add_library("${WEBRTC_COMPONENT_PREFIX}rtc_base_rtc_base_approved" OBJECT
     "${WEBRTC_RTC_BASE_DIR}/win/windows_version.cc"
     "${WEBRTC_RTC_BASE_DIR}/win/windows_version.h"
 )
+target_link_libraries("rtc_base_rtc_base_approved"
+    absl::optional
+)
 
-add_library("${WEBRTC_COMPONENT_PREFIX}rtc_base" OBJECT
+add_webrtc_object("rtc_base" ${WEBRTC_RTC_BASE_IDE_FOLDER}
     "${WEBRTC_RTC_BASE_DIR}/async_invoker.cc"
     "${WEBRTC_RTC_BASE_DIR}/async_invoker.h"
     "${WEBRTC_RTC_BASE_DIR}/async_invoker_inl.h"
@@ -236,19 +262,17 @@ add_library("${WEBRTC_COMPONENT_PREFIX}rtc_base" OBJECT
     "${WEBRTC_RTC_BASE_DIR}/numerics/safe_conversions_impl.h"
     #thread_checker"
     "${WEBRTC_RTC_BASE_DIR}/thread_checker.h"
-
 )
-target_link_libraries("${WEBRTC_COMPONENT_PREFIX}rtc_base"
+
+target_link_libraries("rtc_base"
     PRIVATE
-        "${WEBRTC_COMPONENT_PREFIX}rtc_base_checks"
-        "${WEBRTC_COMPONENT_PREFIX}rtc_base_rtc_task_queue"
-        "${WEBRTC_COMPONENT_PREFIX}rtc_base_rtc_stringutils"
+        "rtc_base_checks"
+        "rtc_base_rtc_task_queue"
+        "rtc_base_rtc_stringutils"
         "absl::optional"
         "OpenSSL::SSL"
         "OpenSSL::Crypto"
 )
-target_include_directories("${WEBRTC_COMPONENT_PREFIX}rtc_base" PRIVATE ${WEBRTC_SOURCE_DIR})
-set_target_properties("${WEBRTC_COMPONENT_PREFIX}rtc_base" PROPERTIES FOLDER ${WEBRTC_RTC_BASE_IDE_FOLDER})
 
 
 #add_library(webrtc::rtc_base ALIAS "${WEBRTC_COMPONENT_PREFIX}rtc_base")
