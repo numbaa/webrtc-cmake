@@ -6,6 +6,10 @@ include_directories("src")
 function(add_webrtc_object object_name ide_folder)
 add_library(${object_name} OBJECT ${ARGN})
 set_target_properties(${object_name} PROPERTIES FOLDER ${ide_folder})
+target_compile_definitions(${object_name} PRIVATE
+    WIN32_LEAN_AND_MEAN
+    HAVE_WEBRTC_VIDEO
+)
 endfunction(add_webrtc_object)
 
 include("${WEBRTC_CMAKE_DIR}/api.cmake")

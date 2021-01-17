@@ -1,7 +1,7 @@
 set(WEBRTC_P2P_DIR "${WEBRTC_SOURCE_DIR}/p2p")
 set(WEBRTC_P2P_IDE_FOLDER "webrtc/p2p")
 
-add_library("${WEBRTC_COMPONENT_PREFIX}p2p" OBJECT
+add_webrtc_object("p2p" ${WEBRTC_P2P_IDE_FOLDER}
     #rtc_p2p
     "${WEBRTC_P2P_DIR}/base/async_stun_tcp_socket.cc"
     "${WEBRTC_P2P_DIR}/base/async_stun_tcp_socket.h"
@@ -72,13 +72,9 @@ add_library("${WEBRTC_COMPONENT_PREFIX}p2p" OBJECT
     "${WEBRTC_P2P_DIR}/stunprober/stun_prober.cc"
     "${WEBRTC_P2P_DIR}/stunprober/stun_prober.h"
 )
-set_target_properties("${WEBRTC_COMPONENT_PREFIX}p2p" PROPERTIES FOLDER ${WEBRTC_P2P_IDE_FOLDER})
-target_link_libraries("${WEBRTC_COMPONENT_PREFIX}p2p"
-    "absl::optional"
-)
-target_include_directories("${WEBRTC_COMPONENT_PREFIX}p2p"
+target_link_libraries("p2p"
     PRIVATE
-        ${WEBRTC_SOURCE_DIR}
+        absl::optional
 )
 
 #add_library(webrtc::p2p ALIAS "${WEBRTC_COMPONENT_PREFIX}p2p")

@@ -1,7 +1,7 @@
 set(WEBRTC_MEDIA_DIR "${WEBRTC_SOURCE_DIR}/media")
 set(WEBRTC_MEDIA_IDE_FOLDER "webrtc/media")
 
-add_library("${WEBRTC_COMPONENT_PREFIX}rtc_media_base" OBJECT
+add_webrtc_object("rtc_media_base" ${WEBRTC_MEDIA_IDE_FOLDER}
     "${WEBRTC_MEDIA_DIR}/base/adapted_video_track_source.cc"
     "${WEBRTC_MEDIA_DIR}/base/adapted_video_track_source.h"
     "${WEBRTC_MEDIA_DIR}/base/audio_source.h"
@@ -40,55 +40,38 @@ add_library("${WEBRTC_COMPONENT_PREFIX}rtc_media_base" OBJECT
     #rtc_vp9_profile
     "${WEBRTC_MEDIA_DIR}/base/vp9_profile.cc"
     "${WEBRTC_MEDIA_DIR}/base/vp9_profile.h"
-
 )
-target_include_directories("${WEBRTC_COMPONENT_PREFIX}rtc_media_base"
+target_link_libraries("rtc_media_base"
     PRIVATE
-        ${WEBRTC_SOURCE_DIR}
+        absl::optional
 )
-target_link_libraries("${WEBRTC_COMPONENT_PREFIX}rtc_media_base"
-    absl::optional
-)
-set_target_properties("${WEBRTC_COMPONENT_PREFIX}rtc_media_base" PROPERTIES FOLDER ${WEBRTC_MEDIA_IDE_FOLDER})
 
-
-add_library("${WEBRTC_COMPONENT_PREFIX}rtc_constants" OBJECT
+add_webrtc_object("rtc_constants" ${WEBRTC_MEDIA_IDE_FOLDER}
     "${WEBRTC_MEDIA_DIR}/engine/constants.cc"
     "${WEBRTC_MEDIA_DIR}/engine/constants.h"
 )
-target_include_directories("${WEBRTC_COMPONENT_PREFIX}rtc_constants"
-    PRIVATE
-        ${WEBRTC_SOURCE_DIR}
-)
-set_target_properties("${WEBRTC_COMPONENT_PREFIX}rtc_constants" PROPERTIES FOLDER ${WEBRTC_MEDIA_IDE_FOLDER})
 
-add_library("${WEBRTC_COMPONENT_PREFIX}rtc_simulcast_encoder_adapter" OBJECT
+add_webrtc_object("rtc_simulcast_encoder_adapter" ${WEBRTC_MEDIA_IDE_FOLDER}
     "${WEBRTC_MEDIA_DIR}/engine/simulcast_encoder_adapter.cc"
     "${WEBRTC_MEDIA_DIR}/engine/simulcast_encoder_adapter.h"
 )
-target_link_libraries("${WEBRTC_COMPONENT_PREFIX}rtc_simulcast_encoder_adapter"
-    "${WEBRTC_COMPONENT_PREFIX}rtc_media_base"
-)
-target_include_directories("${WEBRTC_COMPONENT_PREFIX}rtc_simulcast_encoder_adapter"
+target_link_libraries("rtc_simulcast_encoder_adapter"
     PRIVATE
-        ${WEBRTC_SOURCE_DIR}
+        rtc_media_base
+        absl::optional
 )
-set_target_properties("${WEBRTC_COMPONENT_PREFIX}rtc_simulcast_encoder_adapter" PROPERTIES FOLDER ${WEBRTC_MEDIA_IDE_FOLDER})
 
-add_library("${WEBRTC_COMPONENT_PREFIX}rtc_encoder_simulcast_proxy" OBJECT
+add_webrtc_object("rtc_encoder_simulcast_proxy" ${WEBRTC_MEDIA_IDE_FOLDER}
     "${WEBRTC_MEDIA_DIR}/engine/encoder_simulcast_proxy.cc"
     "${WEBRTC_MEDIA_DIR}/engine/encoder_simulcast_proxy.h"
 )
-target_link_libraries("${WEBRTC_COMPONENT_PREFIX}rtc_encoder_simulcast_proxy"
-    "${WEBRTC_COMPONENT_PREFIX}rtc_simulcast_encoder_adapter"
-)
-target_include_directories("${WEBRTC_COMPONENT_PREFIX}rtc_encoder_simulcast_proxy"
+target_link_libraries("rtc_encoder_simulcast_proxy"
     PRIVATE
-        ${WEBRTC_SOURCE_DIR}
+        rtc_simulcast_encoder_adapter
+        absl::optional
 )
-set_target_properties("${WEBRTC_COMPONENT_PREFIX}rtc_encoder_simulcast_proxy" PROPERTIES FOLDER ${WEBRTC_MEDIA_IDE_FOLDER})
 
-add_library("${WEBRTC_COMPONENT_PREFIX}rtc_internal_video_codecs" OBJECT
+add_webrtc_object("rtc_internal_video_codecs" ${WEBRTC_MEDIA_IDE_FOLDER}
     "${WEBRTC_MEDIA_DIR}/engine/fake_video_codec_factory.cc"
     "${WEBRTC_MEDIA_DIR}/engine/fake_video_codec_factory.h"
     "${WEBRTC_MEDIA_DIR}/engine/internal_decoder_factory.cc"
@@ -98,19 +81,17 @@ add_library("${WEBRTC_COMPONENT_PREFIX}rtc_internal_video_codecs" OBJECT
     "${WEBRTC_MEDIA_DIR}/engine/multiplex_codec_factory.cc"
     "${WEBRTC_MEDIA_DIR}/engine/multiplex_codec_factory.h"
 )
-target_link_libraries("${WEBRTC_COMPONENT_PREFIX}rtc_internal_video_codecs"
-    "${WEBRTC_COMPONENT_PREFIX}rtc_constants"
-    "${WEBRTC_COMPONENT_PREFIX}rtc_encoder_simulcast_proxy"
-    "${WEBRTC_COMPONENT_PREFIX}rtc_media_base"
-    "${WEBRTC_COMPONENT_PREFIX}rtc_simulcast_encoder_adapter"
-)
-target_include_directories("${WEBRTC_COMPONENT_PREFIX}rtc_internal_video_codecs"
+target_link_libraries("rtc_internal_video_codecs"
     PRIVATE
-        ${WEBRTC_SOURCE_DIR}
+        rtc_constants
+        rtc_encoder_simulcast_proxy
+        rtc_media_base
+        rtc_simulcast_encoder_adapter
+        absl::optional
 )
-set_target_properties("${WEBRTC_COMPONENT_PREFIX}rtc_internal_video_codecs" PROPERTIES FOLDER ${WEBRTC_MEDIA_IDE_FOLDER})
 
-add_library("${WEBRTC_COMPONENT_PREFIX}rtc_audio_video" OBJECT
+
+add_webrtc_object("rtc_audio_video" ${WEBRTC_MEDIA_IDE_FOLDER}
     "${WEBRTC_MEDIA_DIR}/engine/adm_helpers.cc"
     "${WEBRTC_MEDIA_DIR}/engine/adm_helpers.h"
     "${WEBRTC_MEDIA_DIR}/engine/null_webrtc_video_engine.h"
@@ -127,66 +108,59 @@ add_library("${WEBRTC_COMPONENT_PREFIX}rtc_audio_video" OBJECT
     "${WEBRTC_MEDIA_DIR}/engine/webrtc_voice_engine.cc"
     "${WEBRTC_MEDIA_DIR}/engine/webrtc_voice_engine.h"
 )
-target_link_libraries("${WEBRTC_COMPONENT_PREFIX}rtc_audio_video"
-    "${WEBRTC_COMPONENT_PREFIX}rtc_constants"
-    "${WEBRTC_COMPONENT_PREFIX}rtc_media_base"
-    "field_tral_base_config"
-    "absl::optional"
-)
-target_include_directories("${WEBRTC_COMPONENT_PREFIX}rtc_audio_video"
+target_link_libraries("rtc_audio_video"
     PRIVATE
-        ${WEBRTC_SOURCE_DIR}
+        rtc_constants
+        field_tral_base_config
+        rtc_media_base
+        absl::optional
 )
-target_compile_definitions("${WEBRTC_COMPONENT_PREFIX}rtc_audio_video" PUBLIC HAVE_WEBRTC_VIDEO)
-set_target_properties("${WEBRTC_COMPONENT_PREFIX}rtc_audio_video" PROPERTIES FOLDER ${WEBRTC_MEDIA_IDE_FOLDER})
 
-add_library("${WEBRTC_COMPONENT_PREFIX}rtc_media_engine_defaults" OBJECT
+
+add_webrtc_object("rtc_media_engine_defaults" ${WEBRTC_MEDIA_IDE_FOLDER}
     "${WEBRTC_MEDIA_DIR}/engine/webrtc_media_engine_defaults.cc"
     "${WEBRTC_MEDIA_DIR}/engine/webrtc_media_engine_defaults.h"
 )
-target_link_libraries("${WEBRTC_COMPONENT_PREFIX}rtc_media_engine_defaults"
-    "${WEBRTC_COMPONENT_PREFIX}rtc_audio_video"
-)
-target_include_directories("${WEBRTC_COMPONENT_PREFIX}rtc_media_engine_defaults"
+target_link_libraries("rtc_media_engine_defaults"
     PRIVATE
-        ${WEBRTC_SOURCE_DIR}
+        rtc_audio_video
+        absl::optional
 )
-set_target_properties("${WEBRTC_COMPONENT_PREFIX}rtc_media_engine_defaults" PROPERTIES FOLDER ${WEBRTC_MEDIA_IDE_FOLDER})
 
-add_library("${WEBRTC_COMPONENT_PREFIX}rtc_data" OBJECT
+
+add_webrtc_object("rtc_data" ${WEBRTC_MEDIA_IDE_FOLDER}
     "${WEBRTC_MEDIA_DIR}/sctp/sctp_transport.cc"
     "${WEBRTC_MEDIA_DIR}/sctp/sctp_transport.h"
     "${WEBRTC_MEDIA_DIR}/sctp/sctp_transport_internal.h"
 )
-target_link_libraries("${WEBRTC_COMPONENT_PREFIX}rtc_data"
-    "${WEBRTC_COMPONENT_PREFIX}rtc_media_base"
-    "usrsctp-static"
-)
-target_include_directories("${WEBRTC_COMPONENT_PREFIX}rtc_data"
+target_link_libraries("rtc_data"
     PRIVATE
-        ${WEBRTC_SOURCE_DIR}
+        absl::optional
+        rtc_media_base
+        usrsctp-static
 )
-set_target_properties("${WEBRTC_COMPONENT_PREFIX}rtc_data" PROPERTIES FOLDER ${WEBRTC_MEDIA_IDE_FOLDER})
 
 
-add_library("${WEBRTC_COMPONENT_PREFIX}rtc_media" OBJECT "dummy.cpp")
-target_link_libraries("${WEBRTC_COMPONENT_PREFIX}rtc_media"
-    "${WEBRTC_COMPONENT_PREFIX}rtc_audio_video"
-    "${WEBRTC_COMPONENT_PREFIX}rtc_data"
+add_webrtc_object("rtc_media" ${WEBRTC_MEDIA_IDE_FOLDER}
+    "dummy.cpp"
 )
-set_target_properties("${WEBRTC_COMPONENT_PREFIX}rtc_media" PROPERTIES FOLDER ${WEBRTC_MEDIA_IDE_FOLDER})
+target_link_libraries("rtc_media"
+    PRIVATE
+        rtc_audio_video
+        rtc_data
+)
 
-add_custom_target("${WEBRTC_COMPONENT_PREFIX}media")
-add_dependencies("${WEBRTC_COMPONENT_PREFIX}media"
-    "${WEBRTC_COMPONENT_PREFIX}rtc_media"
-    "${WEBRTC_COMPONENT_PREFIX}rtc_media_engine_defaults"
-    "${WEBRTC_COMPONENT_PREFIX}rtc_internal_video_codecs"
-    "${WEBRTC_COMPONENT_PREFIX}rtc_encoder_simulcast_proxy"
-    "${WEBRTC_COMPONENT_PREFIX}rtc_encoder_simulcast_proxy"
-    "${WEBRTC_COMPONENT_PREFIX}rtc_simulcast_encoder_adapter"
-    "${WEBRTC_COMPONENT_PREFIX}rtc_constants"
-    "${WEBRTC_COMPONENT_PREFIX}rtc_media_base"
+add_custom_target("media")
+add_dependencies("media"
+    "rtc_media"
+    "rtc_media_engine_defaults"
+    "rtc_internal_video_codecs"
+    "rtc_encoder_simulcast_proxy"
+    "rtc_encoder_simulcast_proxy"
+    "rtc_simulcast_encoder_adapter"
+    "rtc_constants"
+    "rtc_media_base"
 )
-set_target_properties("${WEBRTC_COMPONENT_PREFIX}media" PROPERTIES FOLDER ${WEBRTC_MEDIA_IDE_FOLDER})
+set_target_properties("media" PROPERTIES FOLDER ${WEBRTC_MEDIA_IDE_FOLDER})
 
 #add_library(webrtc::media ALIAS "${WEBRTC_COMPONENT_PREFIX}media")

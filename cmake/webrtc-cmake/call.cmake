@@ -1,7 +1,7 @@
 set(WEBRTC_CALL_DIR "${WEBRTC_SOURCE_DIR}/call")
 set(WEBRTC_CALL_IDE_FOLDER "webrtc/call")
 
-add_library("${WEBRTC_COMPONENT_PREFIX}call_interfaces" OBJECT
+add_webrtc_object("call_interfaces" ${WEBRTC_CALL_IDE_FOLDER}
     "${WEBRTC_CALL_DIR}/audio_receive_stream.cc"
     "${WEBRTC_CALL_DIR}/audio_receive_stream.h"
     "${WEBRTC_CALL_DIR}/audio_send_stream.h"
@@ -16,36 +16,26 @@ add_library("${WEBRTC_COMPONENT_PREFIX}call_interfaces" OBJECT
     "${WEBRTC_CALL_DIR}/syncable.cc"
     "${WEBRTC_CALL_DIR}/syncable.h"
 )
-target_include_directories("${WEBRTC_COMPONENT_PREFIX}call_interfaces"
+target_link_libraries("call_interfaces"
     PRIVATE
-        ${WEBRTC_SOURCE_DIR}
+        rtp_interfaces
+        video_stream_api
+        absl::optional
 )
-target_link_libraries("${WEBRTC_COMPONENT_PREFIX}call_interfaces"
-    PRIVATE
-        "${WEBRTC_COMPONENT_PREFIX}rtp_interfaces"
-        "${WEBRTC_COMPONENT_PREFIX}video_stream_api"
-        "absl::optional"
-)
-set_target_properties("${WEBRTC_COMPONENT_PREFIX}call_interfaces" PROPERTIES FOLDER ${WEBRTC_CALL_IDE_FOLDER})
 
-add_library("${WEBRTC_COMPONENT_PREFIX}rtp_interfaces" OBJECT
+add_webrtc_object("rtp_interfaces" ${WEBRTC_CALL_IDE_FOLDER}
     "${WEBRTC_CALL_DIR}/rtp_config.cc"
     "${WEBRTC_CALL_DIR}/rtp_config.h"
     "${WEBRTC_CALL_DIR}/rtp_packet_sink_interface.h"
     "${WEBRTC_CALL_DIR}/rtp_stream_receiver_controller_interface.h"
     "${WEBRTC_CALL_DIR}/rtp_transport_controller_send_interface.h"
 )
-target_link_libraries("${WEBRTC_COMPONENT_PREFIX}rtp_interfaces"
+target_link_libraries("rtp_interfaces"
     PRIVATE
-        "absl::optional"
+        absl::optional
 )
-target_include_directories("${WEBRTC_COMPONENT_PREFIX}rtp_interfaces"
-    PRIVATE
-        ${WEBRTC_SOURCE_DIR}
-)
-set_target_properties("${WEBRTC_COMPONENT_PREFIX}rtp_interfaces" PROPERTIES FOLDER ${WEBRTC_CALL_IDE_FOLDER})
 
-add_library("${WEBRTC_COMPONENT_PREFIX}rtp_receiver" OBJECT
+add_webrtc_object("call_rtp_receiver" ${WEBRTC_CALL_IDE_FOLDER}
     "${WEBRTC_CALL_DIR}/rtp_demuxer.cc"
     "${WEBRTC_CALL_DIR}/rtp_demuxer.h"
     "${WEBRTC_CALL_DIR}/rtp_stream_receiver_controller.cc"
@@ -53,18 +43,14 @@ add_library("${WEBRTC_COMPONENT_PREFIX}rtp_receiver" OBJECT
     "${WEBRTC_CALL_DIR}/rtx_receive_stream.cc"
     "${WEBRTC_CALL_DIR}/rtx_receive_stream.h"
 )
-target_include_directories("${WEBRTC_COMPONENT_PREFIX}rtp_receiver"
+target_link_libraries("call_rtp_receiver"
     PRIVATE
-        ${WEBRTC_SOURCE_DIR}
+        absl::optional
+        rtp_interfaces
 )
-target_link_libraries("${WEBRTC_COMPONENT_PREFIX}rtp_receiver"
-    PRIVATE
-        "${WEBRTC_COMPONENT_PREFIX}rtp_interfaces"
-        "absl::optional"
-)
-set_target_properties("${WEBRTC_COMPONENT_PREFIX}rtp_receiver" PROPERTIES FOLDER ${WEBRTC_CALL_IDE_FOLDER})
 
-add_library("${WEBRTC_COMPONENT_PREFIX}rtp_sender" OBJECT
+
+add_webrtc_object("call_rtp_sender" ${WEBRTC_CALL_IDE_FOLDER}
     "${WEBRTC_CALL_DIR}/rtp_payload_params.cc"
     "${WEBRTC_CALL_DIR}/rtp_payload_params.h"
     "${WEBRTC_CALL_DIR}/rtp_transport_controller_send.cc"
@@ -73,79 +59,54 @@ add_library("${WEBRTC_COMPONENT_PREFIX}rtp_sender" OBJECT
     "${WEBRTC_CALL_DIR}/rtp_video_sender.h"
     "${WEBRTC_CALL_DIR}/rtp_video_sender_interface.h"
 )
-target_include_directories("${WEBRTC_COMPONENT_PREFIX}rtp_sender"
+target_link_libraries("call_rtp_sender"
     PRIVATE
-        ${WEBRTC_SOURCE_DIR}
+        absl::optional
+        rtp_interfaces
+        bitrate_configurator
 )
-target_link_libraries("${WEBRTC_COMPONENT_PREFIX}rtp_sender"
-    PRIVATE
-        "${WEBRTC_COMPONENT_PREFIX}rtp_interfaces"
-        "${WEBRTC_COMPONENT_PREFIX}bitrate_configurator"
-        "absl::optional"
-)
-set_target_properties("${WEBRTC_COMPONENT_PREFIX}rtp_sender" PROPERTIES FOLDER ${WEBRTC_CALL_IDE_FOLDER})
 
-add_library("${WEBRTC_COMPONENT_PREFIX}bitrate_configurator" OBJECT
+add_webrtc_object("bitrate_configurator" ${WEBRTC_CALL_IDE_FOLDER}
     "${WEBRTC_CALL_DIR}/rtp_bitrate_configurator.cc"
     "${WEBRTC_CALL_DIR}/rtp_bitrate_configurator.h"
 )
-target_include_directories("${WEBRTC_COMPONENT_PREFIX}bitrate_configurator"
+target_link_libraries("bitrate_configurator"
     PRIVATE
-        ${WEBRTC_SOURCE_DIR}
+        absl::optional
+        rtp_interfaces
 )
-target_link_libraries("${WEBRTC_COMPONENT_PREFIX}bitrate_configurator"
-    PRIVATE
-        "${WEBRTC_COMPONENT_PREFIX}rtp_interfaces"
-        "absl::optional"
-)
-set_target_properties("${WEBRTC_COMPONENT_PREFIX}bitrate_configurator" PROPERTIES FOLDER ${WEBRTC_CALL_IDE_FOLDER})
 
-add_library("${WEBRTC_COMPONENT_PREFIX}bitrate_allocator" OBJECT
+add_webrtc_object("bitrate_allocator" ${WEBRTC_CALL_IDE_FOLDER}
     "${WEBRTC_CALL_DIR}/bitrate_allocator.cc"
     "${WEBRTC_CALL_DIR}/bitrate_allocator.h"
 )
-target_include_directories("${WEBRTC_COMPONENT_PREFIX}bitrate_allocator"
+target_link_libraries("bitrate_allocator"
     PRIVATE
-        ${WEBRTC_SOURCE_DIR}
+        absl::optional
 )
-target_link_libraries("${WEBRTC_COMPONENT_PREFIX}bitrate_allocator"
-    PRIVATE
-        "absl::optional"
-)
-set_target_properties("${WEBRTC_COMPONENT_PREFIX}bitrate_allocator" PROPERTIES FOLDER ${WEBRTC_CALL_IDE_FOLDER})
 
-add_library("${WEBRTC_COMPONENT_PREFIX}simulated_network" OBJECT
+add_webrtc_object("simulated_network" ${WEBRTC_CALL_IDE_FOLDER}
     "${WEBRTC_CALL_DIR}/simulated_network.cc"
     "${WEBRTC_CALL_DIR}/simulated_network.h"
 )
-target_include_directories("${WEBRTC_COMPONENT_PREFIX}simulated_network"
+target_link_libraries("simulated_network"
     PRIVATE
-        ${WEBRTC_SOURCE_DIR}
+        absl::optional
 )
-target_link_libraries("${WEBRTC_COMPONENT_PREFIX}simulated_network"
-    PRIVATE
-        "absl::optional"
-)
-set_target_properties("${WEBRTC_COMPONENT_PREFIX}simulated_network" PROPERTIES FOLDER ${WEBRTC_CALL_IDE_FOLDER})
 
-add_library("${WEBRTC_COMPONENT_PREFIX}video_stream_api" OBJECT
+add_webrtc_object("video_stream_api" ${WEBRTC_CALL_IDE_FOLDER}
     "${WEBRTC_CALL_DIR}/video_receive_stream.cc"
     "${WEBRTC_CALL_DIR}/video_receive_stream.h"
     "${WEBRTC_CALL_DIR}/video_send_stream.cc"
     "${WEBRTC_CALL_DIR}/video_send_stream.h"
 )
-target_include_directories("${WEBRTC_COMPONENT_PREFIX}video_stream_api"
+target_link_libraries("video_stream_api"
     PRIVATE
-        ${WEBRTC_SOURCE_DIR}
+        absl::optional
+        rtp_interfaces
 )
-target_link_libraries("${WEBRTC_COMPONENT_PREFIX}video_stream_api"
-    PRIVATE
-        "${WEBRTC_COMPONENT_PREFIX}rtp_interfaces"
-        "absl::optional"
-)
-set_target_properties("${WEBRTC_COMPONENT_PREFIX}video_stream_api" PROPERTIES FOLDER ${WEBRTC_CALL_IDE_FOLDER})
 
-add_library("${WEBRTC_COMPONENT_PREFIX}call" OBJECT
+add_webrtc_object("call" ${WEBRTC_CALL_IDE_FOLDER}
     "${WEBRTC_CALL_DIR}/call.cc"
     "${WEBRTC_CALL_DIR}/call_factory.cc"
     "${WEBRTC_CALL_DIR}/call_factory.h"
@@ -156,23 +117,14 @@ add_library("${WEBRTC_COMPONENT_PREFIX}call" OBJECT
     "${WEBRTC_CALL_DIR}/receive_time_calculator.cc"
     "${WEBRTC_CALL_DIR}/receive_time_calculator.h"
 )
-target_include_directories("${WEBRTC_COMPONENT_PREFIX}call"
-    PRIVATE
-        ${WEBRTC_SOURCE_DIR}
+target_link_libraries("call"
+    call_interfaces
+    rtp_interfaces
+    call_rtp_receiver
+    call_rtp_sender
+    bitrate_configurator
+    bitrate_allocator
+    simulated_network
+    video_stream_api
+    absl::optional
 )
-set_target_properties("${WEBRTC_COMPONENT_PREFIX}call" PROPERTIES FOLDER ${WEBRTC_CALL_IDE_FOLDER})
-
-target_link_libraries("${WEBRTC_COMPONENT_PREFIX}call"
-    "${WEBRTC_COMPONENT_PREFIX}call_interfaces"
-    "${WEBRTC_COMPONENT_PREFIX}rtp_interfaces"
-    "${WEBRTC_COMPONENT_PREFIX}rtp_receiver"
-    "${WEBRTC_COMPONENT_PREFIX}rtp_sender"
-    "${WEBRTC_COMPONENT_PREFIX}bitrate_configurator"
-    "${WEBRTC_COMPONENT_PREFIX}bitrate_allocator"
-    "${WEBRTC_COMPONENT_PREFIX}simulated_network"
-    "${WEBRTC_COMPONENT_PREFIX}video_stream_api"
-    "absl::optional"
-
-)
-
-#add_library(webrtc::call ALIAS "${WEBRTC_COMPONENT_PREFIX}call")

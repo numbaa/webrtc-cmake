@@ -54,4 +54,32 @@ target_include_directories(${LIB_SRTP}
       "${LIB_SRTP_ROOT}"
       "${LIB_SRTP_ROOT}/config"
       "${LIB_SRTP_ROOT}/include"
+      "${LIB_SRTP_ROOT}/crypto/include"
+      "."
+)
+
+target_link_libraries(${LIB_SRTP}
+   "OpenSSL::SSL"
+   "OpenSSL::Crypto"
+)
+
+target_compile_options(${LIB_SRTP}
+   PUBLIC
+      "-DHAVE_WINSOCK2_H"
+   PRIVATE
+      "-DPACKAGE_STRING=\"libsrtp2 2.1.0-pre\""
+      "-DPACKAGE_VERSION=\"2.1.0-pre\""
+      "-DOPENSSL"
+      "-DHAVE_STDLIB_H"
+      "-DHAVE_STRING_H"
+      "-DHAVE_STDINT_H"
+      "-DHAVE_INTTYPES_H"
+      "-DHAVE_INT16_T"
+      "-DHAVE_INT32_T"
+      "-DHAVE_INT8_T"
+      "-DHAVE_UINT16_T"
+      "-DHAVE_UINT32_T"
+      "-DHAVE_UINT64_T"
+      "-DHAVE_UINT8_T"
+
 )

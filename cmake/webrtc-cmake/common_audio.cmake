@@ -1,7 +1,7 @@
 set(WEBRTC_COMMON_AUDIO_DIR "${WEBRTC_SOURCE_DIR}/common_audio")
 set(WEBRTC_COMMON_AUDIO_IDE_FOLDER "webrtc/common_audio")
 
-add_library("${WEBRTC_COMPONENT_PREFIX}common_audio_c" OBJECT
+add_webrtc_object("common_audio_c" ${WEBRTC_COMMON_AUDIO_IDE_FOLDER}
     "${WEBRTC_COMMON_AUDIO_DIR}/ring_buffer.c"
     "${WEBRTC_COMMON_AUDIO_DIR}/ring_buffer.h"
     "${WEBRTC_COMMON_AUDIO_DIR}/signal_processing/auto_corr_to_refl_coef.c"
@@ -53,16 +53,12 @@ add_library("${WEBRTC_COMPONENT_PREFIX}common_audio_c" OBJECT
     "${WEBRTC_COMMON_AUDIO_DIR}/signal_processing/dot_product_with_scale.cc"
     "${WEBRTC_COMMON_AUDIO_DIR}/signal_processing/dot_product_with_scale.h"
 )
-target_link_libraries("${WEBRTC_COMPONENT_PREFIX}common_audio_c"
-    "absl::optional"
-)
-target_include_directories("${WEBRTC_COMPONENT_PREFIX}common_audio_c"
+target_link_libraries("common_audio_c"
     PRIVATE
-        ${WEBRTC_SOURCE_DIR}
+        absl::optional
 )
-set_target_properties("${WEBRTC_COMPONENT_PREFIX}common_audio_c" PROPERTIES FOLDER ${WEBRTC_COMMON_AUDIO_IDE_FOLDER})
 
-add_library("${WEBRTC_COMPONENT_PREFIX}common_audio" OBJECT
+add_webrtc_object("common_audio" ${WEBRTC_COMMON_AUDIO_IDE_FOLDER}
     "${WEBRTC_COMMON_AUDIO_DIR}/audio_converter.cc"
     "${WEBRTC_COMMON_AUDIO_DIR}/audio_converter.h"
     "${WEBRTC_COMMON_AUDIO_DIR}/audio_util.cc"
@@ -91,15 +87,11 @@ add_library("${WEBRTC_COMPONENT_PREFIX}common_audio" OBJECT
     "${WEBRTC_COMMON_AUDIO_DIR}/window_generator.cc"
     "${WEBRTC_COMMON_AUDIO_DIR}/window_generator.h"
 )
-set_target_properties("${WEBRTC_COMPONENT_PREFIX}common_audio" PROPERTIES FOLDER ${WEBRTC_COMMON_AUDIO_IDE_FOLDER})
-target_include_directories("${WEBRTC_COMPONENT_PREFIX}common_audio"
+target_link_libraries("common_audio"
     PRIVATE
-        ${WEBRTC_SOURCE_DIR}
+        absl::optional
+        common_audio_c
 )
 
-target_link_libraries("${WEBRTC_COMPONENT_PREFIX}common_audio"
-    "${WEBRTC_COMPONENT_PREFIX}_common_audio_c"
-    "absl::optional"
-)
 
 #add_library(webrtc::common_audio ALIAS "${WEBRTC_COMPONENT_PREFIX}common_audio")

@@ -1,7 +1,7 @@
 set(WEBRTC_VIDEO_DIR "${WEBRTC_SOURCE_DIR}/video")
 set(WEBRTC_VIDEO_IDE_FOLDER "webrtc/video")
 
-add_library("${WEBRTC_COMPONENT_PREFIX}video" OBJECT
+add_webrtc_object("video" ${WEBRTC_VIDEO_IDE_FOLDER}
     "${WEBRTC_VIDEO_DIR}/buffered_frame_decryptor.cc"
     "${WEBRTC_VIDEO_DIR}/buffered_frame_decryptor.h"
     "${WEBRTC_VIDEO_DIR}/call_stats.cc"
@@ -60,15 +60,14 @@ add_library("${WEBRTC_COMPONENT_PREFIX}video" OBJECT
     "${WEBRTC_VIDEO_DIR}/frame_dumping_decoder.cc"
     "${WEBRTC_VIDEO_DIR}/frame_dumping_decoder.h"
 )
-set_target_properties("${WEBRTC_COMPONENT_PREFIX}video" PROPERTIES FOLDER ${WEBRTC_VIDEO_IDE_FOLDER})
-target_link_libraries("${WEBRTC_COMPONENT_PREFIX}video"
+target_link_libraries("video"
     PRIVATE
-        "absl::optional"
+        absl::optional
 )
-target_include_directories("${WEBRTC_COMPONENT_PREFIX}video" PRIVATE ${WEBRTC_SOURCE_DIR})
 
-#api/video_stream_encoder_create depend on this
-add_library("${WEBRTC_COMPONENT_PREFIX}video_stream_encoder_impl" OBJECT
+
+
+add_webrtc_object("video_stream_encoder_impl" ${WEBRTC_VIDEO_IDE_FOLDER}
     "${WEBRTC_VIDEO_DIR}/alignment_adjuster.cc"
     "${WEBRTC_VIDEO_DIR}/alignment_adjuster.h"
     "${WEBRTC_VIDEO_DIR}/encoder_bitrate_adjuster.cc"
@@ -82,11 +81,10 @@ add_library("${WEBRTC_COMPONENT_PREFIX}video_stream_encoder_impl" OBJECT
     "${WEBRTC_VIDEO_DIR}/video_stream_encoder.cc"
     "${WEBRTC_VIDEO_DIR}/video_stream_encoder.h"
 )
-set_target_properties("${WEBRTC_COMPONENT_PREFIX}video_stream_encoder_impl" PROPERTIES FOLDER ${WEBRTC_VIDEO_IDE_FOLDER})
-target_link_libraries("${WEBRTC_COMPONENT_PREFIX}video_stream_encoder_impl"
+target_link_libraries("video_stream_encoder_impl"
     PRIVATE
-        "absl::optional"
+        absl::optional
 )
-target_include_directories("${WEBRTC_COMPONENT_PREFIX}video_stream_encoder_impl" PRIVATE ${WEBRTC_SOURCE_DIR})
+
 
 #add_library(webrtc::video ALIAS "${WEBRTC_COMPONENT_PREFIX}video")
