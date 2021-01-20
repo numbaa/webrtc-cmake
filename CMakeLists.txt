@@ -31,7 +31,20 @@ target_include_directories("${PROJECT_NAME}-static"
         ${WEBRTC_SOURCE_DIR}
 )
 
+set(win_lib
+    winmm
+    ws2_32
+    crypt32
+    secur32
+)
+
 target_link_libraries(${PROJECT_NAME}
+    rtp_parameters
+    stun_types
+    video_codecs_api
+    modules_aecm_core
+    libaom_av1_decoder
+    api_video
     create_peerconnection_factory
     libjingle_peerconnection_api
     rtc_error
@@ -110,9 +123,11 @@ target_link_libraries(${PROJECT_NAME}
     rtc_base_platform_thread
     rtc_base_logging
     rtc_base_rtc_base_approved
+    rtc_base_sequence_checker
     rtc_base
     video
     video_stream_encoder_impl
+    ${win_lib}
 )
 
 target_link_libraries("${PROJECT_NAME}-static"

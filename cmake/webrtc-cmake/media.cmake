@@ -88,6 +88,7 @@ target_link_libraries("rtc_internal_video_codecs"
         rtc_media_base
         rtc_simulcast_encoder_adapter
         absl::optional
+        libaom_av1_decoder
 )
 
 
@@ -114,6 +115,7 @@ target_link_libraries("rtc_audio_video"
         field_tral_base_config
         rtc_media_base
         absl::optional
+        absl::strings
 )
 
 

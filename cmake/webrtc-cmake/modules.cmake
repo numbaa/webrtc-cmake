@@ -91,6 +91,7 @@ add_webrtc_object("modules_audio_coding" ${WEBRTC_MODULES_IDE_FOLDER}
 target_link_libraries("modules_audio_coding"
     PRIVATE
         absl::optional
+        absl::strings
 )
 
 
@@ -115,6 +116,25 @@ add_webrtc_object("modules_audio_device" ${WEBRTC_MODULES_IDE_FOLDER}
 target_link_libraries("modules_audio_device"
     PRIVATE
         absl::optional
+)
+
+add_webrtc_object("libaom_av1_decoder" ${WEBRTC_MODULES_IDE_FOLDER}
+    "${WEBRTC_MODULES_DIR}/video_coding/codecs/av1/libaom_av1_decoder.h"
+    "${WEBRTC_MODULES_DIR}/video_coding/codecs/av1/libaom_av1_decoder_absent.cc"
+)
+target_link_libraries("libaom_av1_decoder"
+    absl::core_headers
+)
+
+add_webrtc_object("modules_aecm_core" ${WEBRTC_MODULES_IDE_FOLDER}
+    "${WEBRTC_MODULES_DIR}/audio_processing/aecm/aecm_core.cc"
+    "${WEBRTC_MODULES_DIR}/audio_processing/aecm/aecm_core.h"
+    "${WEBRTC_MODULES_DIR}/audio_processing/aecm/aecm_defines.h"
+    "${WEBRTC_MODULES_DIR}/audio_processing/aecm/echo_control_mobile.cc"
+    "${WEBRTC_MODULES_DIR}/audio_processing/aecm/echo_control_mobile.h"
+)
+target_link_libraries("modules_aecm_core"
+    absl::strings
 )
 
 
@@ -431,6 +451,7 @@ add_webrtc_object("modules_rtp_rtcp" ${WEBRTC_MODULES_IDE_FOLDER}
 target_link_libraries("modules_rtp_rtcp"
     PRIVATE
         absl::optional
+        absl::strings
 )
 
 add_webrtc_object("modules_utility" ${WEBRTC_MODULES_IDE_FOLDER}

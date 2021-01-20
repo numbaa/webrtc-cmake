@@ -17,6 +17,30 @@ target_link_libraries("rtc_base_rtc_task_queue"
     absl::optional
 )
 
+add_webrtc_object("rtc_base_sequence_checker" ${WEBRTC_RTC_BASE_IDE_FOLDER}
+    "${WEBRTC_RTC_BASE_DIR}/synchronization/sequence_checker.cc"
+    "${WEBRTC_RTC_BASE_DIR}/synchronization/sequence_checker.h"
+)
+target_link_libraries("rtc_base_sequence_checker"
+    rtc_base_mutex
+)
+
+add_webrtc_object("rtc_base_yield" ${WEBRTC_RTC_BASE_IDE_FOLDER}
+    "${WEBRTC_RTC_BASE_DIR}/synchronization/yield.cc"
+    "${WEBRTC_RTC_BASE_DIR}/synchronization/yield.h"
+)
+
+add_webrtc_object("rtc_base_mutex" ${WEBRTC_RTC_BASE_IDE_FOLDER}
+    "${WEBRTC_RTC_BASE_DIR}/synchronization/mutex.cc"
+    "${WEBRTC_RTC_BASE_DIR}/synchronization/mutex.h"
+    "${WEBRTC_RTC_BASE_DIR}/synchronization/mutex_pthread.h"
+    "${WEBRTC_RTC_BASE_DIR}/synchronization/mutex_critical_section.h"
+)
+target_link_libraries("rtc_base_mutex"
+    rtc_base_yield
+    absl::core_headers
+)
+
 add_webrtc_object("rtc_base_stringutils" ${WEBRTC_RTC_BASE_IDE_FOLDER}
     "${WEBRTC_RTC_BASE_DIR}/string_encode.cc"
     "${WEBRTC_RTC_BASE_DIR}/string_encode.h"

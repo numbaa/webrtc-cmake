@@ -75,6 +75,8 @@ add_webrtc_object("p2p" ${WEBRTC_P2P_IDE_FOLDER}
 target_link_libraries("p2p"
     PRIVATE
         absl::optional
+        absl::strings
+        stun_types
 )
 
 #add_library(webrtc::p2p ALIAS "${WEBRTC_COMPONENT_PREFIX}p2p")
