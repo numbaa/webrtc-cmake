@@ -142,7 +142,7 @@ target_link_libraries("rtc_data"
 
 
 add_webrtc_object("rtc_media" ${WEBRTC_MEDIA_IDE_FOLDER}
-    "dummy.cpp"
+    ${DUMMY_CPP}
 )
 target_link_libraries("rtc_media"
     PRIVATE

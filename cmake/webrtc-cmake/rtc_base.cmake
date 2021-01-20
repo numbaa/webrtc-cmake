@@ -268,7 +268,7 @@ target_link_libraries("rtc_base"
     PRIVATE
         "rtc_base_checks"
         "rtc_base_rtc_task_queue"
-        "rtc_base_rtc_stringutils"
+        "rtc_base_stringutils"
         "absl::optional"
         "OpenSSL::SSL"
         "OpenSSL::Crypto"
