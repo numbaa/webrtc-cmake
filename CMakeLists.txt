@@ -87,8 +87,15 @@ target_link_libraries(${PROJECT_NAME}
     modules_utility
     modules_video_coding
     modules_video_processing
+    cascaded_biquad_filter
+    legacy_delay_estimator
+    pffft_wrapper
     p2p
     rtc_pc_base
+    aligned_malloc
+    spl_sqrt_floor
+    video_stream_decoder_impl
+    rate_control_settings
     media_protocol_names
     peerconnection
     connection_context

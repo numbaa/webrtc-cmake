@@ -1,5 +1,5 @@
 set(WEBRTC_PC_DIR "${WEBRTC_SOURCE_DIR}/pc")
-set(WEBRTC_PC_IDE_FOLDER "webrtc/pc")
+set(WEBRTC_PC_IDE_FOLDER "src/pc")
 
 add_webrtc_object("rtc_pc_base" ${WEBRTC_PC_IDE_FOLDER}
     #rtc_pc_base

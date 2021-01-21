@@ -1,5 +1,5 @@
 set(WEBRTC_COMMON_VIDEO_DIR "${WEBRTC_SOURCE_DIR}/common_video")
-set(WEBRTC_COMMON_VIDEO_IDE_FOLDER "webrtc/common_video")
+set(WEBRTC_COMMON_VIDEO_IDE_FOLDER "src/common_video")
 
 add_webrtc_object("common_video" ${WEBRTC_COMMON_VIDEO_IDE_FOLDER}
     "${WEBRTC_COMMON_VIDEO_DIR}/bitrate_adjuster.cc"

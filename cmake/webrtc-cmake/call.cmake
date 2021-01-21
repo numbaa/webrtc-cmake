@@ -1,5 +1,5 @@
 set(WEBRTC_CALL_DIR "${WEBRTC_SOURCE_DIR}/call")
-set(WEBRTC_CALL_IDE_FOLDER "webrtc/call")
+set(WEBRTC_CALL_IDE_FOLDER "src/call")
 
 add_webrtc_object("call_interfaces" ${WEBRTC_CALL_IDE_FOLDER}
     "${WEBRTC_CALL_DIR}/audio_receive_stream.cc"

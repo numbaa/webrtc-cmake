@@ -1,5 +1,5 @@
 set(WEBRTC_RTC_BASE_DIR "${WEBRTC_SOURCE_DIR}/rtc_base")
-set(WEBRTC_RTC_BASE_IDE_FOLDER "webrtc/rtc_base")
+set(WEBRTC_RTC_BASE_IDE_FOLDER "src/rtc_base")
 
 add_webrtc_object("rtc_base_checks" ${WEBRTC_RTC_BASE_IDE_FOLDER}
     "${WEBRTC_RTC_BASE_DIR}/checks.cc"
@@ -279,13 +279,37 @@ add_webrtc_object("rtc_base" ${WEBRTC_RTC_BASE_IDE_FOLDER}
     "${WEBRTC_RTC_BASE_DIR}/ref_counted_object.h"
     "${WEBRTC_RTC_BASE_DIR}/ref_counter.h"
     #rtc_event"
-    #"${WEBRTC_RTC_BASE_DIR}/../../webrtc_overrides/rtc_base/event.cc"
-    #"${WEBRTC_RTC_BASE_DIR}/../../webrtc_overrides/rtc_base/event.h"
+    "${WEBRTC_RTC_BASE_DIR}/event.cc"
+    "${WEBRTC_RTC_BASE_DIR}/event.h"
     #safe_conversions"
     "${WEBRTC_RTC_BASE_DIR}/numerics/safe_conversions.h"
     "${WEBRTC_RTC_BASE_DIR}/numerics/safe_conversions_impl.h"
     #thread_checker"
     "${WEBRTC_RTC_BASE_DIR}/thread_checker.h"
+)
+
+add_webrtc_object("aligned_malloc" ${WEBRTC_RTC_BASE_IDE_FOLDER}
+    "${WEBRTC_RTC_BASE_DIR}/memory/aligned_malloc.cc"
+    "${WEBRTC_RTC_BASE_DIR}/memory/aligned_malloc.h"
+)
+target_link_libraries("aligned_malloc"
+    rtc_base_checks
+)
+
+add_webrtc_object("fifo_buffer" ${WEBRTC_RTC_BASE_IDE_FOLDER}
+    "${WEBRTC_RTC_BASE_DIR}/memory/fifo_buffer.cc"
+    "${WEBRTC_RTC_BASE_DIR}/memory/fifo_buffer.h"
+)
+target_link_libraries("fifo_buffer"
+    rtc_base_mutex
+)
+
+add_webrtc_object("rate_control_settings" ${WEBRTC_RTC_BASE_IDE_FOLDER}
+    "${WEBRTC_RTC_BASE_DIR}/experiments/rate_control_settings.cc"
+    "${WEBRTC_RTC_BASE_DIR}/experiments/rate_control_settings.h"
+)
+target_link_libraries("rate_control_settings"
+    absl::optional
 )
 
 target_link_libraries("rtc_base"

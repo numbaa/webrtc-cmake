@@ -1,5 +1,5 @@
 set(WEBRTC_COMMON_AUDIO_DIR "${WEBRTC_SOURCE_DIR}/common_audio")
-set(WEBRTC_COMMON_AUDIO_IDE_FOLDER "webrtc/common_audio")
+set(WEBRTC_COMMON_AUDIO_IDE_FOLDER "src/common_audio")
 
 add_webrtc_object("common_audio_c" ${WEBRTC_COMMON_AUDIO_IDE_FOLDER}
     "${WEBRTC_COMMON_AUDIO_DIR}/ring_buffer.c"
@@ -58,6 +58,15 @@ target_link_libraries("common_audio_c"
         absl::optional
 )
 
+add_webrtc_object("spl_sqrt_floor" ${WEBRTC_COMMON_AUDIO_IDE_FOLDER}
+    "${WEBRTC_COMMON_AUDIO_DIR}/third_party/spl_sqrt_floor/spl_sqrt_floor.c"
+    "${WEBRTC_COMMON_AUDIO_DIR}/third_party/spl_sqrt_floor/spl_sqrt_floor.h"
+)
+target_link_libraries("spl_sqrt_floor"
+    PRIVATE
+        common_audio_c
+)
+
 add_webrtc_object("common_audio" ${WEBRTC_COMMON_AUDIO_IDE_FOLDER}
     "${WEBRTC_COMMON_AUDIO_DIR}/audio_converter.cc"
     "${WEBRTC_COMMON_AUDIO_DIR}/audio_converter.h"
@@ -91,6 +100,7 @@ target_link_libraries("common_audio"
     PRIVATE
         absl::optional
         common_audio_c
+        aligned_malloc
 )
 
 

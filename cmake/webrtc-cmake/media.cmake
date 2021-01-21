@@ -1,5 +1,5 @@
 set(WEBRTC_MEDIA_DIR "${WEBRTC_SOURCE_DIR}/media")
-set(WEBRTC_MEDIA_IDE_FOLDER "webrtc/media")
+set(WEBRTC_MEDIA_IDE_FOLDER "src/media")
 
 add_webrtc_object("rtc_media_base" ${WEBRTC_MEDIA_IDE_FOLDER}
     "${WEBRTC_MEDIA_DIR}/base/adapted_video_track_source.cc"

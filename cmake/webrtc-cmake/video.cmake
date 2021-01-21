@@ -1,5 +1,5 @@
 set(WEBRTC_VIDEO_DIR "${WEBRTC_SOURCE_DIR}/video")
-set(WEBRTC_VIDEO_IDE_FOLDER "webrtc/video")
+set(WEBRTC_VIDEO_IDE_FOLDER "src/video")
 
 add_webrtc_object("video" ${WEBRTC_VIDEO_IDE_FOLDER}
     "${WEBRTC_VIDEO_DIR}/buffered_frame_decryptor.cc"
@@ -82,6 +82,16 @@ add_webrtc_object("video_stream_encoder_impl" ${WEBRTC_VIDEO_IDE_FOLDER}
     "${WEBRTC_VIDEO_DIR}/video_stream_encoder.h"
 )
 target_link_libraries("video_stream_encoder_impl"
+    PRIVATE
+        absl::optional
+        rate_control_settings
+)
+
+
+add_webrtc_object("video_stream_decoder_impl" ${WEBRTC_VIDEO_IDE_FOLDER}
+    "${WEBRTC_VIDEO_DIR}/video_stream_decoder_impl.cc"
+)
+target_link_libraries("video_stream_decoder_impl"
     PRIVATE
         absl::optional
 )

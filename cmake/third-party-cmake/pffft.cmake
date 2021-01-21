@@ -6,9 +6,14 @@ add_library(${PFFFT} STATIC
 )
 set_target_properties(${PFFFT} PROPERTIES FOLDER ${PFFFT_ROOT})
 
+target_compile_options(${PFFFT} PRIVATE
+   "-D_USE_MATH_DEFINES"
+)
+
 target_include_directories(${PFFFT}
    PUBLIC
       "${PFFFT_ROOT}"
       "${PFFFT_ROOT}/config"
       "${PFFFT_ROOT}/include"
+      "."
 )

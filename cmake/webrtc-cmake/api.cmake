@@ -1,6 +1,6 @@
 
 set(WEBRTC_API_DIR "${WEBRTC_SOURCE_DIR}/api")
-set(WEBRTC_API_IDE_FOLDER "webrtc/api")
+set(WEBRTC_API_IDE_FOLDER "src/api")
 
 
 
@@ -233,6 +233,7 @@ add_webrtc_object("api_video" ${WEBRTC_API_IDE_FOLDER}
 target_link_libraries("api_video"
     absl::optional
     yuv
+    aligned_malloc
 )
 
 add_custom_target("api")

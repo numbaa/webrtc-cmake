@@ -1,5 +1,5 @@
 set(WEBRTC_AUDIO_DIR "${WEBRTC_SOURCE_DIR}/audio")
-set(WEBRTC_AUDIO_IDE_FOLDER "webrtc/audio")
+set(WEBRTC_AUDIO_IDE_FOLDER "src/audio")
 
 add_webrtc_object("audio" ${WEBRTC_AUDIO_IDE_FOLDER}
     "${WEBRTC_AUDIO_DIR}/audio_level.cc"

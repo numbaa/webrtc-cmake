@@ -1,5 +1,5 @@
 set(WEBRTC_P2P_DIR "${WEBRTC_SOURCE_DIR}/p2p")
-set(WEBRTC_P2P_IDE_FOLDER "webrtc/p2p")
+set(WEBRTC_P2P_IDE_FOLDER "src/p2p")
 
 add_webrtc_object("p2p" ${WEBRTC_P2P_IDE_FOLDER}
     #rtc_p2p

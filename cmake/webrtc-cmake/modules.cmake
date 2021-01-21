@@ -1,5 +1,5 @@
 set(WEBRTC_MODULES_DIR "${WEBRTC_SOURCE_DIR}/modules")
-set(WEBRTC_MODULES_IDE_FOLDER "webrtc/modules")
+set(WEBRTC_MODULES_IDE_FOLDER "src/modules")
 #add_definitions(-DWEBRTC_APM_DEBUG_DUMP=0)
 
 add_webrtc_object("modules_audio_coding" ${WEBRTC_MODULES_IDE_FOLDER}
@@ -92,6 +92,7 @@ target_link_libraries("modules_audio_coding"
     PRIVATE
         absl::optional
         absl::strings
+        spl_sqrt_floor
 )
 
 
@@ -132,9 +133,37 @@ add_webrtc_object("modules_aecm_core" ${WEBRTC_MODULES_IDE_FOLDER}
     "${WEBRTC_MODULES_DIR}/audio_processing/aecm/aecm_defines.h"
     "${WEBRTC_MODULES_DIR}/audio_processing/aecm/echo_control_mobile.cc"
     "${WEBRTC_MODULES_DIR}/audio_processing/aecm/echo_control_mobile.h"
+    "${WEBRTC_MODULES_DIR}/audio_processing/aecm/aecm_core_c.cc"
 )
 target_link_libraries("modules_aecm_core"
     absl::strings
+)
+
+add_webrtc_object("cascaded_biquad_filter" ${WEBRTC_MODULES_IDE_FOLDER}
+    "${WEBRTC_MODULES_DIR}/audio_processing/utility/cascaded_biquad_filter.cc"
+    "${WEBRTC_MODULES_DIR}/audio_processing/utility/cascaded_biquad_filter.h"
+)
+target_link_libraries("cascaded_biquad_filter"
+    rtc_base_checks
+)
+
+add_webrtc_object("legacy_delay_estimator" ${WEBRTC_MODULES_IDE_FOLDER}
+    "${WEBRTC_MODULES_DIR}/audio_processing/utility/delay_estimator.cc"
+    "${WEBRTC_MODULES_DIR}/audio_processing/utility/delay_estimator.h"
+    "${WEBRTC_MODULES_DIR}/audio_processing/utility/delay_estimator_internal.h"
+    "${WEBRTC_MODULES_DIR}/audio_processing/utility/delay_estimator_wrapper.cc"
+)
+target_link_libraries("legacy_delay_estimator"
+    rtc_base_checks
+)
+
+add_webrtc_object("pffft_wrapper" ${WEBRTC_MODULES_IDE_FOLDER}
+    "${WEBRTC_MODULES_DIR}/audio_processing/utility/pffft_wrapper.cc"
+    "${WEBRTC_MODULES_DIR}/audio_processing/utility/pffft_wrapper.h"
+)
+target_link_libraries("pffft_wrapper"
+    pffft
+    rtc_base_checks
 )
 
 
