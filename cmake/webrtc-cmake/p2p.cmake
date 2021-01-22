@@ -77,6 +77,7 @@ target_link_libraries("p2p"
         absl::optional
         absl::strings
         stun_types
+        field_trial
 )
 
 #add_library(webrtc::p2p ALIAS "${WEBRTC_COMPONENT_PREFIX}p2p")

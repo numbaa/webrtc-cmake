@@ -93,7 +93,15 @@ target_link_libraries(${PROJECT_NAME}
     p2p
     rtc_pc_base
     aligned_malloc
+    field_trial_parser
+    media_stream_interface
+    audio_options_api
+    metrics
+    network_control
     spl_sqrt_floor
+    field_trial
+    task_utils
+    file_wrapper
     video_stream_decoder_impl
     rate_control_settings
     media_protocol_names

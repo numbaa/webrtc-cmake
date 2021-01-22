@@ -135,12 +135,57 @@ target_link_libraries("rtp_parameters"
     absl::optional
 )
 
+add_webrtc_object("media_stream_interface" ${WEBRTC_API_IDE_FOLDER}
+    "${WEBRTC_API_DIR}/media_stream_interface.cc"
+    "${WEBRTC_API_DIR}/media_stream_interface.h"
+    "${WEBRTC_API_DIR}/media_stream_track.h"
+    "${WEBRTC_API_DIR}/notifier.h"
+)
+target_link_libraries("media_stream_interface"
+    rtp_parameters
+    audio_options_api
+)
+
+add_webrtc_object("audio_options_api" ${WEBRTC_API_IDE_FOLDER}
+    "${WEBRTC_API_DIR}/audio_options.cc"
+    "${WEBRTC_API_DIR}/audio_options.h"
+)
+target_link_libraries("audio_options_api"
+    absl::optional
+)
+
+
 add_webrtc_object("stun_types" ${WEBRTC_API_IDE_FOLDER}
     "${WEBRTC_API_DIR}/transport/stun.h"
     "${WEBRTC_API_DIR}/transport/stun.cc"
 )
 target_link_libraries("stun_types"
     absl::strings
+)
+
+add_webrtc_object("bitrate_settings" ${WEBRTC_API_IDE_FOLDER}
+    "${WEBRTC_API_DIR}/transport/bitrate_settings.cc"
+    "${WEBRTC_API_DIR}/transport/bitrate_settings.h"
+)
+target_link_libraries("bitrate_settings"
+    absl::strings
+)
+
+add_webrtc_object("network_control" ${WEBRTC_API_IDE_FOLDER}
+    "${WEBRTC_API_DIR}/transport/network_control.h"
+    "${WEBRTC_API_DIR}/transport/network_types.cc"
+    "${WEBRTC_API_DIR}/transport/network_types.h"
+)
+target_link_libraries("network_control"
+    absl::strings
+)
+
+add_webrtc_object("api_goog_cc" ${WEBRTC_API_IDE_FOLDER}
+    "${WEBRTC_API_DIR}/transport/goog_cc_factory.cc"
+    "${WEBRTC_API_DIR}/transport/goog_cc_factory.h"
+)
+target_link_libraries("api_goog_cc"
+    network_control
 )
 
 add_webrtc_object("video_codecs_api" ${WEBRTC_API_IDE_FOLDER}

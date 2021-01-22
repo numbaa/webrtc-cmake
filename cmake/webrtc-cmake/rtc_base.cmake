@@ -310,6 +310,45 @@ add_webrtc_object("rate_control_settings" ${WEBRTC_RTC_BASE_IDE_FOLDER}
 )
 target_link_libraries("rate_control_settings"
     absl::optional
+    field_trial_parser
+)
+
+add_webrtc_object("field_trial_parser" ${WEBRTC_RTC_BASE_IDE_FOLDER}
+    "${WEBRTC_RTC_BASE_DIR}/experiments/field_trial_list.cc"
+    "${WEBRTC_RTC_BASE_DIR}/experiments/field_trial_list.h"
+    "${WEBRTC_RTC_BASE_DIR}/experiments/field_trial_parser.cc"
+    "${WEBRTC_RTC_BASE_DIR}/experiments/field_trial_parser.h"
+    "${WEBRTC_RTC_BASE_DIR}/experiments/field_trial_units.cc"
+    "${WEBRTC_RTC_BASE_DIR}/experiments/field_trial_units.h"
+    "${WEBRTC_RTC_BASE_DIR}/experiments/struct_parameters_parser.cc"
+    "${WEBRTC_RTC_BASE_DIR}/experiments/struct_parameters_parser.h"
+)
+target_link_libraries("field_trial_parser"
+    absl::optional
+)
+
+add_webrtc_object("task_utils" ${WEBRTC_RTC_BASE_IDE_FOLDER}
+    #repeating_task
+    "${WEBRTC_RTC_BASE_DIR}/task_utils/repeating_task.cc"
+    "${WEBRTC_RTC_BASE_DIR}/task_utils/repeating_task.h"
+    #pending_task_safety_flag
+    "${WEBRTC_RTC_BASE_DIR}/task_utils/pending_task_safety_flag.cc"
+    "${WEBRTC_RTC_BASE_DIR}/task_utils/pending_task_safety_flag.h"
+    #to_queued_task
+    "${WEBRTC_RTC_BASE_DIR}/task_utils/to_queued_task.h"
+)
+target_link_libraries("task_utils"
+    absl::optional
+)
+
+
+add_webrtc_object("file_wrapper" ${WEBRTC_RTC_BASE_IDE_FOLDER}
+    #file_wrapper
+    "${WEBRTC_RTC_BASE_DIR}/system/file_wrapper.cc"
+    "${WEBRTC_RTC_BASE_DIR}/system/file_wrapper.h"
+)
+target_link_libraries("file_wrapper"
+    rtc_base_checks
 )
 
 target_link_libraries("rtc_base"
@@ -320,6 +359,7 @@ target_link_libraries("rtc_base"
         "absl::optional"
         "OpenSSL::SSL"
         "OpenSSL::Crypto"
+        "field_trial"
 )
 
 

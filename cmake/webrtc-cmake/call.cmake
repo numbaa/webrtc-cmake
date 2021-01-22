@@ -64,6 +64,7 @@ target_link_libraries("call_rtp_sender"
         absl::optional
         rtp_interfaces
         bitrate_configurator
+        network_control
 )
 
 add_webrtc_object("bitrate_configurator" ${WEBRTC_CALL_IDE_FOLDER}

@@ -29,4 +29,5 @@ add_webrtc_object("audio" ${WEBRTC_AUDIO_IDE_FOLDER}
 target_link_libraries("audio"
     PRIVATE
         absl::optional
+        metrics
 )

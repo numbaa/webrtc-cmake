@@ -63,6 +63,7 @@ add_webrtc_object("video" ${WEBRTC_VIDEO_IDE_FOLDER}
 target_link_libraries("video"
     PRIVATE
         absl::optional
+        field_trial
 )
 
 

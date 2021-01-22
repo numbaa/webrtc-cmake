@@ -93,6 +93,7 @@ target_link_libraries("modules_audio_coding"
         absl::optional
         absl::strings
         spl_sqrt_floor
+        metrics
 )
 
 
@@ -579,6 +580,7 @@ add_webrtc_object("modules_video_coding" ${WEBRTC_MODULES_IDE_FOLDER}
 target_link_libraries("modules_video_coding"
     PRIVATE
         absl::optional
+        field_trial
 )
 
 
