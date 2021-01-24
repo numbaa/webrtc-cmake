@@ -97,5 +97,31 @@ target_link_libraries("video_stream_decoder_impl"
         absl::optional
 )
 
+add_webrtc_object("video_adaptation" ${WEBRTC_VIDEO_IDE_FOLDER}
+    "${WEBRTC_VIDEO_DIR}/adaptation/balanced_constraint.cc"
+    "${WEBRTC_VIDEO_DIR}/adaptation/balanced_constraint.h"
+    "${WEBRTC_VIDEO_DIR}/adaptation/bitrate_constraint.cc"
+    "${WEBRTC_VIDEO_DIR}/adaptation/bitrate_constraint.h"
+    "${WEBRTC_VIDEO_DIR}/adaptation/encode_usage_resource.cc"
+    "${WEBRTC_VIDEO_DIR}/adaptation/encode_usage_resource.h"
+    "${WEBRTC_VIDEO_DIR}/adaptation/overuse_frame_detector.cc"
+    "${WEBRTC_VIDEO_DIR}/adaptation/overuse_frame_detector.h"
+    "${WEBRTC_VIDEO_DIR}/adaptation/quality_rampup_experiment_helper.cc"
+    "${WEBRTC_VIDEO_DIR}/adaptation/quality_rampup_experiment_helper.h"
+    "${WEBRTC_VIDEO_DIR}/adaptation/quality_scaler_resource.cc"
+    "${WEBRTC_VIDEO_DIR}/adaptation/quality_scaler_resource.h"
+    "${WEBRTC_VIDEO_DIR}/adaptation/video_stream_encoder_resource.cc"
+    "${WEBRTC_VIDEO_DIR}/adaptation/video_stream_encoder_resource.h"
+    "${WEBRTC_VIDEO_DIR}/adaptation/video_stream_encoder_resource_manager.cc"
+    "${WEBRTC_VIDEO_DIR}/adaptation/video_stream_encoder_resource_manager.h"
+    #resource_adaptation
+)
+target_link_libraries("video_adaptation"
+    PRIVATE
+        absl::optional
+        resource_adaptation_api
+        resource_adaptation
+)
+
 
 #add_library(webrtc::video ALIAS "${WEBRTC_COMPONENT_PREFIX}video")

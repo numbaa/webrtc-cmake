@@ -116,6 +116,7 @@ target_link_libraries("rtc_audio_video"
         rtc_media_base
         absl::optional
         absl::strings
+        call_interfaces
 )
 
 

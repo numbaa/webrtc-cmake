@@ -55,7 +55,6 @@ target_link_libraries(${PROJECT_NAME}
     task_queue
     default_task_queue_factory
     audio
-    call_interfaces
     rtp_interfaces
     call_rtp_receiver
     call_rtp_sender
@@ -93,6 +92,8 @@ target_link_libraries(${PROJECT_NAME}
     p2p
     rtc_pc_base
     aligned_malloc
+    video_adaptation
+    audio_api
     field_trial_parser
     media_stream_interface
     audio_options_api
@@ -142,6 +143,11 @@ target_link_libraries(${PROJECT_NAME}
     rtc_base
     video
     video_stream_encoder_impl
+    jsoncpp
+    audio_codecs_api
+    call_interfaces
+    resource_adaptation
+    resource_adaptation_api
     ${win_lib}
 )
 

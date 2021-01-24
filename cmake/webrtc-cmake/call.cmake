@@ -35,6 +35,33 @@ target_link_libraries("rtp_interfaces"
         absl::optional
 )
 
+add_webrtc_object("resource_adaptation" ${WEBRTC_CALL_IDE_FOLDER}
+    "${WEBRTC_CALL_DIR}/adaptation/adaptation_constraint.cc"
+    "${WEBRTC_CALL_DIR}/adaptation/adaptation_constraint.h"
+    "${WEBRTC_CALL_DIR}/adaptation/broadcast_resource_listener.cc"
+    "${WEBRTC_CALL_DIR}/adaptation/broadcast_resource_listener.h"
+    "${WEBRTC_CALL_DIR}/adaptation/degradation_preference_provider.cc"
+    "${WEBRTC_CALL_DIR}/adaptation/degradation_preference_provider.h"
+    "${WEBRTC_CALL_DIR}/adaptation/encoder_settings.cc"
+    "${WEBRTC_CALL_DIR}/adaptation/encoder_settings.h"
+    "${WEBRTC_CALL_DIR}/adaptation/resource_adaptation_processor.cc"
+    "${WEBRTC_CALL_DIR}/adaptation/resource_adaptation_processor.h"
+    "${WEBRTC_CALL_DIR}/adaptation/resource_adaptation_processor_interface.cc"
+    "${WEBRTC_CALL_DIR}/adaptation/resource_adaptation_processor_interface.h"
+    "${WEBRTC_CALL_DIR}/adaptation/video_source_restrictions.cc"
+    "${WEBRTC_CALL_DIR}/adaptation/video_source_restrictions.h"
+    "${WEBRTC_CALL_DIR}/adaptation/video_stream_adapter.cc"
+    "${WEBRTC_CALL_DIR}/adaptation/video_stream_adapter.h"
+    "${WEBRTC_CALL_DIR}/adaptation/video_stream_input_state.cc"
+    "${WEBRTC_CALL_DIR}/adaptation/video_stream_input_state.h"
+    "${WEBRTC_CALL_DIR}/adaptation/video_stream_input_state_provider.cc"
+    "${WEBRTC_CALL_DIR}/adaptation/video_stream_input_state_provider.h"
+)
+target_link_libraries("resource_adaptation"
+    PRIVATE
+        absl::optional
+)
+
 add_webrtc_object("call_rtp_receiver" ${WEBRTC_CALL_IDE_FOLDER}
     "${WEBRTC_CALL_DIR}/rtp_demuxer.cc"
     "${WEBRTC_CALL_DIR}/rtp_demuxer.h"

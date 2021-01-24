@@ -154,12 +154,142 @@ target_link_libraries("audio_options_api"
     absl::optional
 )
 
+add_webrtc_object("audio_api" ${WEBRTC_API_IDE_FOLDER}
+    #audio_frame_api
+    "${WEBRTC_API_DIR}/audio/audio_frame.cc"
+    "${WEBRTC_API_DIR}/audio/audio_frame.h"
+    "${WEBRTC_API_DIR}/audio/channel_layout.cc"
+    "${WEBRTC_API_DIR}/audio/channel_layout.h"
+    #audio_frame_processor
+    "${WEBRTC_API_DIR}/audio/audio_frame_processor.h"
+    #audio_mixer_api
+    "${WEBRTC_API_DIR}/audio/audio_mixer.h"
+    #aec3_config
+    "${WEBRTC_API_DIR}/audio/echo_canceller3_config.cc"
+    "${WEBRTC_API_DIR}/audio/echo_canceller3_config.h"
+    #aec3_config_json
+    "${WEBRTC_API_DIR}/audio/echo_canceller3_config_json.cc"
+    "${WEBRTC_API_DIR}/audio/echo_canceller3_config_json.h"
+    #aec3_factory
+    "${WEBRTC_API_DIR}/audio/echo_canceller3_factory.cc"
+    "${WEBRTC_API_DIR}/audio/echo_canceller3_factory.h"
+    #echo_control
+    "${WEBRTC_API_DIR}/audio/echo_control.h"
+    #echo_detector_creator
+    "${WEBRTC_API_DIR}/audio/echo_detector_creator.cc"
+    "${WEBRTC_API_DIR}/audio/echo_detector_creator.h"
+)
+target_link_libraries("audio_api"
+    absl::optional
+    jsoncpp
+)
+target_compile_definitions(audio_api PRIVATE WEBRTC_APM_DEBUG_DUMP=0)
+
+
+add_webrtc_object("audio_codecs_api" ${WEBRTC_API_IDE_FOLDER}
+    #audio_codecs_api
+    "${WEBRTC_API_DIR}/audio_codecs/audio_codec_pair_id.cc"
+    "${WEBRTC_API_DIR}/audio_codecs/audio_codec_pair_id.h"
+    "${WEBRTC_API_DIR}/audio_codecs/audio_decoder.cc"
+    "${WEBRTC_API_DIR}/audio_codecs/audio_decoder.h"
+    "${WEBRTC_API_DIR}/audio_codecs/audio_decoder_factory.h"
+    "${WEBRTC_API_DIR}/audio_codecs/audio_decoder_factory_template.h"
+    "${WEBRTC_API_DIR}/audio_codecs/audio_encoder.cc"
+    "${WEBRTC_API_DIR}/audio_codecs/audio_encoder.h"
+    "${WEBRTC_API_DIR}/audio_codecs/audio_encoder_factory.h"
+    "${WEBRTC_API_DIR}/audio_codecs/audio_encoder_factory_template.h"
+    "${WEBRTC_API_DIR}/audio_codecs/audio_format.cc"
+    "${WEBRTC_API_DIR}/audio_codecs/audio_format.h"
+    #builtin_audio_decoder_factory
+    "${WEBRTC_API_DIR}/audio_codecs/builtin_audio_decoder_factory.cc"
+    "${WEBRTC_API_DIR}/audio_codecs/builtin_audio_decoder_factory.h"
+    #audio_encoder_ilbc_config
+    "${WEBRTC_API_DIR}/audio_codecs/ilbc/audio_encoder_ilbc_config.h"
+    #audio_decoder_ilbc
+    "${WEBRTC_API_DIR}/audio_codecs/ilbc/audio_decoder_ilbc.cc"
+    "${WEBRTC_API_DIR}/audio_codecs/ilbc/audio_decoder_ilbc.h"
+    #builtin_audio_encoder_factory
+    "${WEBRTC_API_DIR}/audio_codecs/builtin_audio_encoder_factory.cc"
+    "${WEBRTC_API_DIR}/audio_codecs/builtin_audio_encoder_factory.h"
+    #audio_encoder_ilbc
+    "${WEBRTC_API_DIR}/audio_codecs/ilbc/audio_encoder_ilbc.cc"
+    "${WEBRTC_API_DIR}/audio_codecs/ilbc/audio_encoder_ilbc.h"
+    #opus_audio_decoder_factory
+    "${WEBRTC_API_DIR}/audio_codecs/opus_audio_decoder_factory.cc"
+    "${WEBRTC_API_DIR}/audio_codecs/opus_audio_decoder_factory.h"
+    #opus_audio_encoder_factory
+    "${WEBRTC_API_DIR}/audio_codecs/opus_audio_encoder_factory.cc"
+    "${WEBRTC_API_DIR}/audio_codecs/opus_audio_encoder_factory.h"
+    #audio_encoder_g711
+    "${WEBRTC_API_DIR}/audio_codecs/g711/audio_encoder_g711.cc"
+    "${WEBRTC_API_DIR}/audio_codecs/g711/audio_encoder_g711.h"
+    #audio_decoder_g711
+    "${WEBRTC_API_DIR}/audio_codecs/g711/audio_decoder_g711.cc"
+    "${WEBRTC_API_DIR}/audio_codecs/g711/audio_decoder_g711.h"
+    #audio_encoder_g722_config
+    "${WEBRTC_API_DIR}/audio_codecs/g722/audio_encoder_g722_config.h"
+    #audio_encoder_g722
+    "${WEBRTC_API_DIR}/audio_codecs/g722/audio_encoder_g722.cc"
+    "${WEBRTC_API_DIR}/audio_codecs/g722/audio_encoder_g722.h"
+    #audio_decoder_g722
+    "${WEBRTC_API_DIR}/audio_codecs/g722/audio_decoder_g722.cc"
+    "${WEBRTC_API_DIR}/audio_codecs/g722/audio_decoder_g722.h"
+    #audio_encoder_isac
+    "${WEBRTC_API_DIR}/audio_codecs/isac/audio_encoder_isac.h"
+    "${WEBRTC_API_DIR}/audio_codecs/isac/audio_encoder_isac_float.cc"
+    "${WEBRTC_API_DIR}/audio_codecs/isac/audio_encoder_isac_float.h"
+    #audio_encoder_L16
+    "${WEBRTC_API_DIR}/audio_codecs/L16/audio_encoder_L16.cc"
+    "${WEBRTC_API_DIR}/audio_codecs/L16/audio_encoder_L16.h"
+    #audio_decoder_L16
+    "${WEBRTC_API_DIR}/audio_codecs/L16/audio_decoder_L16.cc"
+    "${WEBRTC_API_DIR}/audio_codecs/L16/audio_decoder_L16.h"
+    #audio_encoder_opus_config
+    "${WEBRTC_API_DIR}/audio_codecs/opus/audio_encoder_multi_channel_opus_config.cc"
+    "${WEBRTC_API_DIR}/audio_codecs/opus/audio_encoder_multi_channel_opus_config.h"
+    "${WEBRTC_API_DIR}/audio_codecs/opus/audio_encoder_opus_config.cc"
+    "${WEBRTC_API_DIR}/audio_codecs/opus/audio_encoder_opus_config.h"
+    #audio_decoder_opus_config
+    "${WEBRTC_API_DIR}/audio_codecs/opus/audio_decoder_multi_channel_opus_config.h"
+    #audio_encoder_opus
+    "${WEBRTC_API_DIR}/audio_codecs/opus/audio_encoder_opus.cc"
+    "${WEBRTC_API_DIR}/audio_codecs/opus/audio_encoder_opus.h"
+    #audio_decoder_opus
+    "${WEBRTC_API_DIR}/audio_codecs/opus/audio_decoder_opus.cc"
+    "${WEBRTC_API_DIR}/audio_codecs/opus/audio_decoder_opus.h"
+    #audio_encoder_multiopus
+    "${WEBRTC_API_DIR}/audio_codecs/opus/audio_encoder_multi_channel_opus.cc"
+    "${WEBRTC_API_DIR}/audio_codecs/opus/audio_encoder_multi_channel_opus.h"
+    #audio_decoder_multiopus
+    "${WEBRTC_API_DIR}/audio_codecs/opus/audio_decoder_multi_channel_opus.cc"
+    "${WEBRTC_API_DIR}/audio_codecs/opus/audio_decoder_multi_channel_opus.h"
+)
+target_link_libraries("audio_codecs_api"
+    absl::strings
+    opus
+)
+target_compile_definitions(audio_codecs_api PRIVATE
+    WEBRTC_USE_BUILTIN_ISAC_FIX=0
+    WEBRTC_USE_BUILTIN_ISAC_FLOAT=1
+    WEBRTC_USE_BUILTIN_ILBC=1
+    WEBRTC_USE_BUILTIN_OPUS=1
+    WEBRTC_OPUS_VARIABLE_COMPLEXITY=1
+)
+
 
 add_webrtc_object("stun_types" ${WEBRTC_API_IDE_FOLDER}
     "${WEBRTC_API_DIR}/transport/stun.h"
     "${WEBRTC_API_DIR}/transport/stun.cc"
 )
 target_link_libraries("stun_types"
+    absl::strings
+)
+
+add_webrtc_object("resource_adaptation_api" ${WEBRTC_API_IDE_FOLDER}
+    "${WEBRTC_API_DIR}/adaptation/resource.h"
+    "${WEBRTC_API_DIR}/adaptation/resource.cc"
+)
+target_link_libraries("resource_adaptation_api"
     absl::strings
 )
 
