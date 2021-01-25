@@ -1,3 +1,6 @@
+# deprecated
+我是shabi
+
 # webrtc-cmake
 Try building [webrtc](https://webrtc.googlesource.com/) using cmake.
 
